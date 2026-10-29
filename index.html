@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<meta name="description" content="面向内地学生与家长的 HKDSE 升学探索平台：DSE 制度与评分、香港院校官网、Non-JUPAS 要点、方向匹配与最佳5科计算器。">
+<title>学途导航｜内地学生 HKDSE 升学探索平台</title>
+<style>
+  :root {
+    --primary: #2563eb;
+    --primary-dark: #1e40af;
+    --secondary: #0d9488;
+    --accent: #ea580c;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #0f172a;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --soft-blue: #eff6ff;
+    --soft-green: #ecfdf5;
+    --soft-orange: #fff7ed;
+    --soft-purple: #f5f3ff;
+    --soft-red: #fef2f2;
+    --soft-yellow: #fefce8;
+    --radius: 22px;
+    --shadow: 0 12px 34px rgba(15, 23, 42, 0.06);
+  }
+
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    background:
+      radial-gradient(circle at top left, rgba(37, 99, 235, 0.14), transparent 34%),
+      radial-gradient(circle at top right, rgba(13, 148, 136, 0.10), transparent 30%),
+      var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--primary); }
+  a:hover { color: var(--primary-dark); }
+
+  :focus-visible {
+    outline: 3px solid rgba(37, 99, 235, 0.55);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+
+  .skip-link {
+    position: absolute; left: 12px; top: -60px;
+    background: var(--primary-dark); color: #fff;
+    padding: 10px 16px; border-radius: 0 0 12px 12px;
+    z-index: 100; font-weight: 700;
+  }
+  .skip-link:focus { top: 0; color: #fff; }
+
+  .container { width: min(1120px, 100%); margin: 0 auto; padding: 0 18px; }
+
+  /* ---------- Nav & hero ---------- */
+  header { padding: 24px 0 8px; }
+
+  .nav {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 14px; flex-wrap: wrap; margin-bottom: 26px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; color: var(--primary-dark); font-size: 1.15rem; }
+  .logo {
+    width: 42px; height: 42px; border-radius: 14px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    display: grid; place-items: center; color: #fff; font-weight: 900;
+    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.22);
+  }
+  .nav-links { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none; font-size: 0.88rem;
+    font-weight: 600; padding: 6px 9px; border-radius: 8px;
+  }
+  .nav-links a:hover { color: var(--primary-dark); background: var(--soft-blue); }
+
+  .hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 26px; align-items: center; padding: 18px 0 42px; }
+  .hero-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-radius: 28px; padding: 34px;
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.08);
+    backdrop-filter: blur(12px);
+  }
+  .tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--soft-blue); color: var(--primary-dark);
+    border: 1px solid #bfdbfe; padding: 7px 12px; border-radius: 999px;
+    font-size: 0.88rem; font-weight: 700; margin-bottom: 14px;
+  }
+  h1 { font-size: clamp(2rem, 4.6vw, 3.8rem); line-height: 1.1; margin: 0 0 16px; letter-spacing: -1.4px; }
+  .gradient-text {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .lead { color: var(--muted); font-size: 1.05rem; margin: 0 0 22px; }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  button, .button {
+    border: none; cursor: pointer; border-radius: 14px;
+    padding: 12px 18px; font-weight: 800; font-size: 0.98rem;
+    transition: 0.2s ease; text-decoration: none;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: inherit;
+  }
+  .primary-btn {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #fff; box-shadow: 0 14px 28px rgba(37, 99, 235, 0.24);
+  }
+  .primary-btn:hover { transform: translateY(-2px); box-shadow: 0 18px 36px rgba(37, 99, 235, 0.3); }
+  .secondary-btn { background: #fff; color: var(--primary-dark); border: 1px solid var(--border); }
+  .secondary-btn:hover { background: var(--soft-blue); }
+
+  /* Planets */
+  .visual {
+    min-height: 420px; position: relative; border-radius: 28px; overflow: hidden;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.95), rgba(13, 148, 136, 0.92)), #2563eb;
+    color: #fff; box-shadow: 0 24px 60px rgba(37, 99, 235, 0.2); padding: 26px;
+  }
+  .orbit { position: absolute; inset: 36px; border: 1px dashed rgba(255, 255, 255, 0.42); border-radius: 999px; animation: spin 28s linear infinite; }
+  .orbit.two { inset: 80px 54px; animation-duration: 22s; animation-direction: reverse; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .planet {
+    position: absolute; background: rgba(255, 255, 255, 0.94);
+    color: var(--primary-dark); padding: 9px 13px; border-radius: 999px;
+    font-weight: 800; font-size: 0.9rem; box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+  }
+  .p1 { top: 28px; left: 32px; } .p2 { top: 92px; right: 24px; }
+  .p3 { bottom: 90px; left: 28px; } .p4 { bottom: 36px; right: 42px; }
+  .p5 { top: 190px; left: 50%; transform: translateX(-50%); }
+  .visual-main { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; }
+  .visual-main h2 { font-size: 2rem; margin: 0 0 8px; }
+  .visual-main p { margin: 0; opacity: 0.92; }
+
+  /* ---------- Sections ---------- */
+  section { padding: 48px 0; }
+  .section-title { font-size: clamp(1.6rem, 3vw, 2.3rem); margin: 0 0 12px; letter-spacing: -0.6px; }
+  .section-subtitle { color: var(--muted); margin: 0 0 24px; max-width: 860px; }
+  .section-header { margin-bottom: 8px; }
+  .eyebrow {
+    display: inline-block; font-size: 0.74rem; letter-spacing: 0.12em;
+    text-transform: uppercase; font-weight: 800; color: #047857;
+    background: var(--soft-green); border: 1px solid #a7f3d0;
+    padding: 5px 10px; border-radius: 999px; margin-bottom: 10px;
+  }
+
+  .grid { display: grid; gap: 18px; }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow);
+  }
+  .card h3 { margin: 0 0 8px; font-size: 1.12rem; }
+  .card h4 { margin: 0 0 8px; font-size: 1.02rem; }
+  .card p:last-child { margin-bottom: 0; }
+  .card ul { margin: 8px 0 0; padding-left: 20px; color: var(--muted); }
+  .card li + li { margin-top: 4px; }
+
+  .notice, .warning-notice, .success-notice, .info-notice {
+    border-radius: 16px; padding: 14px 16px; margin-top: 16px; font-size: 0.95rem;
+  }
+  .notice { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+  .warning-notice { background: #fff7ed; color: #9a3412; border: 1px solid #fed7aa; }
+  .success-notice { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+  .info-notice { background: var(--soft-blue); color: #1e3a8a; border: 1px solid #bfdbfe; }
+
+  .small { font-size: 0.86rem; color: var(--muted); }
+
+  /* ---------- Grade bar ---------- */
+  .grade-bar { display: flex; border-radius: 12px; overflow: hidden; margin: 22px 0 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); }
+  .grade-level {
+    flex: 1; text-align: center; padding: 14px 4px; color: #fff;
+    font-weight: 700; font-size: 0.95rem; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; line-height: 1.2;
+  }
+  .grade-level small { font-size: 0.72rem; font-weight: 400; margin-top: 4px; opacity: 0.92; }
+  .grade-5ss { background: #b91c1c; } .grade-5s { background: #dc2626; } .grade-5 { background: #ea580c; }
+  .grade-4 { background: #d97706; } .grade-3 { background: #059669; } .grade-2 { background: #2563eb; }
+  .grade-1 { background: #7c3aed; } .grade-u { background: #64748b; }
+
+  /* ---------- Wizard ---------- */
+  .app-shell {
+    background: #fff; border: 1px solid var(--border); border-radius: 28px;
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.08); overflow: hidden;
+  }
+  .app-header {
+    padding: 20px 22px; background: linear-gradient(135deg, #eff6ff, #ecfdf5);
+    border-bottom: 1px solid var(--border); display: flex; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap; align-items: center;
+  }
+  .progress-wrap { width: 260px; max-width: 100%; background: #dbeafe; border-radius: 999px; height: 12px; overflow: hidden; }
+  .progress { height: 100%; width: 25%; background: linear-gradient(90deg, var(--primary), var(--secondary)); border-radius: inherit; transition: 0.25s ease; }
+  .app-body { padding: 24px; }
+  .step { display: none; }
+  .step.active { display: block; animation: fade 0.25s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+  .option-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 16px; }
+  .option {
+    border: 1.5px solid var(--border); background: #fff; border-radius: 16px;
+    padding: 14px; cursor: pointer; transition: 0.18s ease; min-height: 104px;
+    display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between;
+    text-align: left; font: inherit; color: inherit; width: 100%;
+  }
+  .option:hover { border-color: #93c5fd; background: #f8fbff; transform: translateY(-1px); }
+  .option.selected { border-color: var(--primary); background: var(--soft-blue); box-shadow: 0 10px 24px rgba(37, 99, 235, 0.12); }
+  .option .emoji { font-size: 1.5rem; margin-bottom: 8px; }
+  .option strong { display: block; font-size: 1rem; }
+  .option small { color: var(--muted); font-weight: 400; }
+
+  .question { margin: 18px 0; }
+  label { font-weight: 800; display: block; margin-bottom: 8px; }
+  select, textarea {
+    width: 100%; border: 1.5px solid var(--border); border-radius: 14px;
+    padding: 12px 14px; font: inherit; outline: none; background: #fff; color: var(--text);
+  }
+  select:focus, textarea:focus { border-color: #93c5fd; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12); }
+
+  .core-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 18px; }
+  .core-chip {
+    background: var(--soft-blue); border: 1px solid #bfdbfe; color: var(--primary-dark);
+    border-radius: 999px; padding: 8px 12px; font-weight: 700; font-size: 0.9rem;
+  }
+  .core-chip em { font-style: normal; font-weight: 500; color: var(--muted); font-size: 0.76rem; margin-left: 4px; }
+
+  .field-hint { font-size: 0.85rem; color: var(--muted); margin: 6px 0 0; }
+
+  .app-actions { margin-top: 24px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .muted-btn { background: #f1f5f9; color: var(--text); }
+  .muted-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+  .form-error {
+    margin-top: 14px; padding: 10px 14px; border-radius: 12px;
+    background: #fef2f2; border: 1px solid #fecaca; color: #991b1b;
+    font-size: 0.92rem; font-weight: 600;
+  }
+
+  .result { display: none; margin-top: 26px; }
+  .result.active { display: block; animation: fade 0.3s ease; }
+  .result-hero {
+    background: linear-gradient(135deg, var(--primary-dark), var(--secondary));
+    color: #fff; border-radius: 22px; padding: 24px; margin-bottom: 20px;
+  }
+  .result-hero h3 { margin: 0 0 8px; font-size: 1.55rem; }
+  .result-hero p { margin: 0; opacity: 0.94; }
+  .result-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .tag-chip {
+    background: rgba(255, 255, 255, 0.16); border: 1px solid rgba(255, 255, 255, 0.35);
+    padding: 5px 10px; border-radius: 999px; font-size: 0.8rem; font-weight: 700;
+  }
+
+  .story-mini { border-top: 1px solid var(--border); padding: 12px 0; }
+  .story-mini:first-child { border-top: none; padding-top: 0; }
+  .story-mini strong { display: block; }
+  .story-mini span { font-size: 0.82rem; color: var(--primary); font-weight: 700; }
+  .story-mini p { margin: 4px 0 0; font-size: 0.9rem; color: var(--muted); }
+
+  /* ---------- Experts ---------- */
+  .expert-toggle {
+    background: var(--soft-blue); border: 1px solid #bfdbfe; color: var(--primary-dark);
+    cursor: pointer; font-size: 0.85rem; padding: 8px 12px; border-radius: 10px;
+    margin-top: 12px; width: 100%; text-align: center; transition: 0.2s ease;
+  }
+  .expert-toggle:hover { background: #dbeafe; }
+  .expert-detail {
+    display: none; padding: 12px; background: #f8fafc; border-radius: 10px;
+    margin-top: 8px; font-size: 0.9rem; color: var(--muted); border: 1px solid var(--border);
+  }
+  .expert-detail.open { display: block; animation: fade 0.2s ease; }
+  .expert-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .expert-tags span { font-size: 0.74rem; font-weight: 700; color: var(--muted); background: #f1f5f9; border-radius: 999px; padding: 3px 8px; }
+  .origin-badge { font-size: 0.7rem; font-weight: 800; color: #9a3412; background: var(--soft-orange); border: 1px solid #fed7aa; border-radius: 999px; padding: 2px 7px; margin-left: 6px; vertical-align: middle; }
+
+  /* ---------- University links ---------- */
+  .uni-links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 26px; }
+  .uni-link-card {
+    display: flex; align-items: center; gap: 14px; padding: 18px; border-radius: 20px;
+    background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(148, 163, 184, 0.25);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.07); text-decoration: none; color: inherit;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .uni-link-card:hover { transform: translateY(-4px); box-shadow: 0 18px 42px rgba(15, 23, 42, 0.13); border-color: rgba(37, 99, 235, 0.35); }
+  .uni-link-card h3 { margin: 0; font-size: 1rem; }
+  .uni-link-card p { margin: 4px 0 0; font-size: 0.84rem; color: var(--muted); line-height: 1.35; }
+  .uni-badge {
+    flex: 0 0 auto; min-width: 58px; padding: 8px 10px; border-radius: 14px;
+    background: linear-gradient(135deg, #2563eb, #7c3aed); color: #fff;
+    font-size: 0.76rem; font-weight: 800; text-align: center; letter-spacing: 0.02em;
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.25);
+  }
+  .arrow { margin-left: auto; font-size: 1.1rem; color: var(--primary); font-weight: 800; }
+
+  /* ---------- Timeline ---------- */
+  .timeline { list-style: none; margin: 16px 0 0; padding: 0 0 0 22px; border-left: 2px solid #bfdbfe; }
+  .timeline li { position: relative; padding: 0 0 18px 6px; }
+  .timeline li:last-child { padding-bottom: 0; }
+  .timeline li::before {
+    content: ""; position: absolute; left: -29px; top: 6px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--primary); border: 3px solid #dbeafe;
+  }
+  .timeline strong { display: block; color: var(--primary-dark); }
+
+  /* ---------- Calculator ---------- */
+  .calc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 18px 0; }
+  .calc-result { margin-top: 20px; }
+  .score-big { font-size: 2.6rem; font-weight: 900; color: var(--primary-dark); line-height: 1; }
+  .status-badge { display: inline-block; padding: 6px 12px; border-radius: 999px; font-weight: 800; font-size: 0.85rem; }
+  .status-badge.ok { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+  .status-badge.warn { background: #fff7ed; color: #9a3412; border: 1px solid #fed7aa; }
+  .data-table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 0.92rem; }
+  .data-table th, .data-table td { padding: 9px 10px; border-bottom: 1px solid var(--border); text-align: left; }
+  .data-table th { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .data-table tr.best td { background: var(--soft-blue); font-weight: 700; }
+
+  /* ---------- Sources ---------- */
+  .sources-list { margin: 12px 0 0; padding-left: 20px; color: var(--muted); font-size: 0.92rem; }
+  .sources-list li { margin-bottom: 8px; }
+  .sources-list a { word-break: break-word; }
+
+  footer {
+    text-align: center; padding: 40px 18px; color: var(--muted);
+    border-top: 1px solid var(--border); margin-top: 30px; font-size: 0.92rem;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 920px) {
+    .hero { grid-template-columns: 1fr; }
+    .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: 1fr; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .visual { min-height: 340px; }
+    .option-grid { grid-template-columns: repeat(2, 1fr); }
+    .calc-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .hero-card, .app-body, .app-header { padding: 18px; }
+    .grid-4, .option-grid, .calc-grid { grid-template-columns: 1fr; }
+    .nav-links { display: flex; overflow-x: auto; width: 100%; padding-bottom: 4px; }
+    .nav-links a { white-space: nowrap; }
+    .grade-level { font-size: 0.76rem; padding: 10px 2px; }
+    .grade-level small { font-size: 0.6rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    body { background: #fff; }
+    header, footer, .hero-actions, .app-actions, .expert-toggle, button, .nav-links { display: none !important; }
+    section { padding: 14px 0; break-inside: avoid; }
+    .card, .app-shell { box-shadow: none; border: 1px solid #ddd; }
+    a[href]::after { content: ""; }
+    .result-hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  body.print-result header,
+  body.print-result footer,
+  body.print-result main > section:not(#explore) { display: none !important; }
+  body.print-result #explore .app-header,
+  body.print-result #explore .step,
+  body.print-result #explore .app-actions { display: none !important; }
+  body.print-result #explore { padding: 0; }
+  body.print-result .result { display: block !important; margin-top: 0; }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<noscript>
+  <div class="container" style="padding-top: 18px;">
+    <p class="warning-notice">方向匹配器与成绩计算器需要 JavaScript 才能运行；制度、院校与来源资料仍可直接阅读。</p>
+  </div>
+</noscript>
+
+<header>
+  <div class="container">
+    <nav class="nav" aria-label="主导航">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">DSE</div>
+        <span>学途导航｜DSE 升学指南</span>
+      </div>
+      <div class="nav-links">
+        <a href="#dse-intro">制度</a>
+        <a href="#cross-disciplinary">选修组合</a>
+        <a href="#university-links">院校</a>
+        <a href="#explore">探索器</a>
+        <a href="#experts">前辈</a>
+        <a href="#mainland">内地生</a>
+        <a href="#calculator">成绩计算</a>
+        <a href="#sources">来源</a>
+      </div>
+    </nav>
+
+    <div class="hero">
+      <div class="hero-card">
+        <div class="tag">📘 面向内地学生与家长的 HKDSE 升学探索平台</div>
+        <h1>从 DSE 科目兴趣出发，探索 <span class="gradient-text">香港与海外升学方向</span></h1>
+        <p class="lead">本平台整理 DSE 制度、评分与 Non-JUPAS 申请要点，并根据你的选修科、能力与学习偏好，匹配可优先探索的升学方向。结果只作探索参考，一切以考评局及院校官网为准。</p>
+        <div class="hero-actions">
+          <a class="button primary-btn" href="#dse-intro">了解 HKDSE 制度</a>
+          <a class="button secondary-btn" href="#explore">开始方向匹配</a>
+        </div>
+      </div>
+
+      <div class="visual" aria-hidden="true">
+        <div class="orbit"></div>
+        <div class="orbit two"></div>
+        <div class="planet p1">中文</div>
+        <div class="planet p2">英文</div>
+        <div class="planet p3">数学</div>
+        <div class="planet p4">选修科</div>
+        <div class="planet p5">Non-JUPAS</div>
+        <div class="visual-main">
+          <h2>DSE 不只是考试</h2>
+          <p>文理跨界自由，是内地学生申请香港及海外院校的路径之一。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <!-- ================= DSE 制度 ================= -->
+  <section id="dse-intro">
+    <div class="container">
+      <h2 class="section-title">HKDSE 考试简介与评分体系</h2>
+      <p class="section-subtitle">先弄清科目结构、评分方式与最低门槛，再谈选科与申请。</p>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>4 + 2–3 科目结构</h3>
+          <p>4 科核心（中文、英文、数学、公民与社会发展）加 2–3 科选修。与内地新高考常见的 3+1+2 不同，DSE 可自由配搭文理选修，例如物理＋历史。</p>
+        </div>
+        <div class="card">
+          <h3>国际认可</h3>
+          <p>截至 2026 年 3 月，逾 2,100 所非本地高等院校在考评局网站或院校官网列出 DSE 的一般入学要求；英国、澳洲、加拿大及亚洲多国院校均接受 DSE 申请。</p>
+        </div>
+        <div class="card">
+          <h3>内地生与非联招</h3>
+          <p>内地学生一般以非本地生身份申请，不通过 JUPAS 联招，而是经各校 Non-JUPAS / Direct Application。若持香港身份证，身份认定须向院校确认。</p>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 34px; font-size: 1.35rem;">甲类科目评级</h3>
+      <div class="grade-bar" role="img" aria-label="DSE 评级由高至低：5**、5*、5、4、3、2、1、U">
+        <div class="grade-level grade-5ss">5**<br><small>最高</small></div>
+        <div class="grade-level grade-5s">5*<br><small>优异</small></div>
+        <div class="grade-level grade-5">5<br><small>优秀</small></div>
+        <div class="grade-level grade-4">4<br><small>良好</small></div>
+        <div class="grade-level grade-3">3<br><small>达标</small></div>
+        <div class="grade-level grade-2">2<br><small>基本达标</small></div>
+        <div class="grade-level grade-1">1<br><small>最低等级</small></div>
+        <div class="grade-level grade-u">U<br><small>未评级</small></div>
+      </div>
+
+      <div class="warning-notice">
+        <strong>评分与门槛：</strong>第 1 级并非「及格」，一般升学以第 2 级为最低要求；U 级表示低于第 1 级。公民与社会发展科只汇报「达标／未达标」，不设 1–5**。
+        四科核心的最低申请要求为 <strong>332A</strong>（中文 3、英文 3、数学 2、公民科达标），但院校另设选修科要求，常见为两科选修达第 3 级，即 <strong>332A33</strong>。
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 选修组合 ================= -->
+  <section id="cross-disciplinary" style="background: var(--soft-blue);">
+    <div class="container">
+      <h2 class="section-title">选修科跨界方向启发</h2>
+      <p class="section-subtitle">核心科目必修，选修科往往决定专业方向。以下是几种跨界组合的参考，不是唯一答案。</p>
+      <div class="grid grid-3">
+        <div class="card" style="border-color: #bfdbfe;">
+          <h4>📈 经济 ＋ 💻 资讯及通讯科技</h4>
+          <p style="margin-top: 8px;">金融科技、商业分析方向：既理解商业运作，也具备编程与数据处理能力。</p>
+        </div>
+        <div class="card" style="border-color: #bfdbfe;">
+          <h4>🧪 化学 ＋ 🎨 视觉艺术</h4>
+          <p style="margin-top: 8px;">化妆品研发、材料与设计方向：科学训练加上审美与表达能力。</p>
+        </div>
+        <div class="card" style="border-color: #bfdbfe;">
+          <h4>🧬 生物 ＋ 🏥 健康管理与社会关怀 ＋ 🏃 体育</h4>
+          <p style="margin-top: 8px;">物理治疗、运动科学、护理方向：结合生物知识与健康照护实务。</p>
+        </div>
+      </div>
+      <p class="small" style="margin-top: 14px;">注意：M1／M2 属数学延伸部分，部分课程视作选修科，但并非所有课程都接受；报读前须逐校核对。</p>
+    </div>
+  </section>
+
+  <!-- ================= 院校 ================= -->
+  <section id="university-links">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Official Links</span>
+        <h2 class="section-title">香港院校官方网站</h2>
+        <p class="section-subtitle">
+          以下为 12 所院校官网：前 8 所为 UGC 资助大学，其余为其他公立或自资院校。课程、学费、奖学金及 Non-JUPAS 安排，一律以官网为准。
+        </p>
+      </div>
+
+      <div class="uni-links-grid">
+        <a class="uni-link-card" href="https://www.hku.hk/en" target="_blank" rel="noopener noreferrer">
+          <span class="uni-badge">HKU</span><div><h3>香港大学</h3><p>The University of Hong Kong</p></div><span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="uni-link-card" href="https://www.cuhk.edu.hk/" target="_blank" rel="noopener noreferrer">
+          <span class="uni-badge">CUHK</span><div><h3>香港中文大学</h3><p>The Chinese University of Hong Kong</p></div><span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="uni-link-card" href="https://hkust.edu.hk/" target="_blank" rel="noopener noreferrer">
+          <span class="uni-badge">HKUST</span><div><h3>香港科技大学</h3><p>The Hong Kong University of Science and Technology</p></div><span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="uni-link-card" href="https://www.polyu.edu.hk/" target="_blank" rel="noopener noreferrer">
+          <span class="uni-badge">PolyU</span><div><h3>香港理工大学</h3><p>The Hong Kong Polytechnic University</p></div><span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="uni-link-card" href="https://www.cityu.edu.hk/" target="_blank" rel="noopener noreferrer">
+          <span class="uni-badge">CityU</span><div><h3>香港城市大学</h3><p>City University of Hong Kong</p></div><span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="uni-link-card" href="https://www.hkbu.edu.hk/" target="_blank" rel="noopener noreferrer">
+          <span class="uni-badge">HKBU</span><div><h3>香港浸会大学</h3><p>Hong Kong Baptist University</p></div><span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="uni-link-card" href="https://www.ln.edu.hk/" target="_blank" rel="noopener noreferrer">
+          <span class="uni-badge">LU</span><div><h3>岭南大学</h3><p>Lingnan University</p></div><span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="uni-link-card" href="https://www.eduhk.hk/" target="_blank" rel="noopener noreferrer">
+          <span class="uni-badge">EdUHK</span><div><h3>香港教育大学</h3><p>The Education University of Hong Kong</p></div><span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="uni-link-card" href="https://www.hkmu.edu.hk/tc/home/" target="_blank" rel="noopener noreferrer">
+          <span class="uni-badge">HKMU</span><div><h3>香港都会大学</h3><p>Hong Kong Metropolitan University</p></div><span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="uni-link-card" href="https://www.hksyu.edu/en/home" target="_blank" rel="noopener noreferrer">
+          <span class="uni-badge">HKSYU</span><div><h3>香港树仁大学</h3><p>Hong Kong Shue Yan University</p></div><span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="uni-link-card" href="https://www.hsu.edu.hk/en/" target="_blank" rel="noopener noreferrer">
+          <span class="uni-badge">HSUHK</span><div><h3>香港恒生大学</h3><p>The Hang Seng University of Hong Kong</p></div><span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="uni-link-card" href="https://www.hkapa.edu/" target="_blank" rel="noopener noreferrer">
+          <span class="uni-badge">HKAPA</span><div><h3>香港演艺学院</h3><p>The Hong Kong Academy for Performing Arts</p></div><span class="arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 探索器 ================= -->
+  <section id="explore" style="background: var(--bg);">
+    <div class="container">
+      <h2 class="section-title">方向匹配器</h2>
+      <p class="section-subtitle">这是一个规则型匹配工具：根据你的选修科、能力与偏好，从预设方向中排序。它不会生成新文字建议，也不替代院校官网。</p>
+
+      <div class="app-shell">
+        <div class="app-header">
+          <div>
+            <strong id="stepLabel">第 1 步：选择 DSE 科目</strong>
+            <p class="small" style="margin: 2px 0 0;" id="restoreNotice" hidden>已恢复上次填写（仅保存在本机浏览器）。</p>
+          </div>
+          <div class="progress-wrap" role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1" aria-label="填写进度">
+            <div class="progress" id="progress"></div>
+          </div>
+        </div>
+
+        <div class="app-body">
+          <p id="liveStatus" class="sr-only" role="status" aria-live="polite"></p>
+
+          <!-- Step 1 -->
+          <div class="step active" data-step="1">
+            <h3>你的 DSE 科目</h3>
+            <p class="field-hint">香港院校一般要求四科核心达标，并按最佳 5–6 科（核心＋选修）评估；个别课程另有指定科目要求。</p>
+
+            <div class="core-row" aria-label="四科核心科目（必修）">
+              <span class="core-chip">中国语文 <em>必修</em></span>
+              <span class="core-chip">英国语文 <em>必修</em></span>
+              <span class="core-chip">数学（必修部分）<em>必修</em></span>
+              <span class="core-chip">公民与社会发展 <em>必修</em></span>
+            </div>
+
+            <div class="grid grid-3" style="gap: 12px;">
+              <div class="question" style="margin: 0;">
+                <label for="elective1">选修科 1</label>
+                <select id="elective1"><option value="">- 请选择 -</option></select>
+              </div>
+              <div class="question" style="margin: 0;">
+                <label for="elective2">选修科 2</label>
+                <select id="elective2"><option value="">- 请选择 -</option></select>
+              </div>
+              <div class="question" style="margin: 0;">
+                <label for="elective3">选修科 3（可选）</label>
+                <select id="elective3"><option value="">- 请选择 -</option></select>
+              </div>
+            </div>
+            <p class="field-hint">如只修两科选修，第三科请选「无」。选修科不可重复。</p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step" data-step="2" aria-hidden="true">
+            <h3>你较擅长哪些能力？<span class="small">（可多选，至少一项）</span></h3>
+            <div class="option-grid" id="abilities">
+              <button class="option" type="button" data-value="分析推理" aria-pressed="false">
+                <span class="emoji" aria-hidden="true">🔍</span><strong>分析推理</strong><small>拆解问题、寻找规律</small>
+              </button>
+              <button class="option" type="button" data-value="语言表达" aria-pressed="false">
+                <span class="emoji" aria-hidden="true">📝</span><strong>语言表达</strong><small>写作、演讲、沟通</small>
+              </button>
+              <button class="option" type="button" data-value="动手实验" aria-pressed="false">
+                <span class="emoji" aria-hidden="true">🛠️</span><strong>动手实验</strong><small>实验、制作、验证</small>
+              </button>
+              <button class="option" type="button" data-value="创意设计" aria-pressed="false">
+                <span class="emoji" aria-hidden="true">🖌️</span><strong>创意设计</strong><small>视觉、产品创作</small>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step" data-step="3" aria-hidden="true">
+            <h3>你的学习偏好</h3>
+            <div class="grid grid-3" style="gap: 14px;">
+              <div class="question" style="margin: 0;">
+                <label for="style">学习方式</label>
+                <select id="style">
+                  <option value="研究型">深入研究一个问题</option>
+                  <option value="实践型">亲手实践，从经验中学习</option>
+                  <option value="创新型">创造新产品、新概念</option>
+                </select>
+              </div>
+              <div class="question" style="margin: 0;">
+                <label for="goal">发展重心</label>
+                <select id="goal">
+                  <option value="稳定发展">稳定发展</option>
+                  <option value="科技前沿">科技前沿</option>
+                  <option value="国际视野">国际视野</option>
+                </select>
+              </div>
+              <div class="question" style="margin: 0;">
+                <label for="region">升学地区偏好</label>
+                <select id="region">
+                  <option value="不限">不限，香港与海外同时考虑</option>
+                  <option value="香港">香港</option>
+                  <option value="英国">英国</option>
+                  <option value="澳洲">澳洲</option>
+                  <option value="加拿大">加拿大</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="step" data-step="4" aria-hidden="true">
+            <h3>确认你的资料</h3>
+            <div class="card" style="background: #f8fafc;">
+              <p><strong>四科核心：</strong>中国语文、英国语文、数学、公民与社会发展</p>
+              <p><strong>选修科：</strong><span id="reviewSubjects">未选择</span></p>
+              <p><strong>擅长能力：</strong><span id="reviewAbilities">未选择</span></p>
+              <p><strong>学习方式：</strong><span id="reviewStyle">研究型</span></p>
+              <p><strong>发展重心：</strong><span id="reviewGoal">稳定发展</span></p>
+              <p style="margin-bottom: 0;"><strong>地区偏好：</strong><span id="reviewRegion">不限</span></p>
+            </div>
+            <p class="field-hint">确认后按「生成探索结果」。结果可打印或保存为 PDF。</p>
+          </div>
+
+          <p class="form-error" id="formError" role="alert" tabindex="-1" hidden></p>
+
+          <div class="app-actions">
+            <button class="muted-btn" id="prevBtn" type="button" disabled>上一步</button>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button class="muted-btn" id="resetBtn" type="button">重新开始</button>
+              <button class="primary-btn" id="nextBtn" type="button">下一步</button>
+            </div>
+          </div>
+
+          <!-- Result -->
+          <div class="result" id="result" aria-live="polite">
+            <div class="result-hero">
+              <h3 id="resultTitle">你的探索方向</h3>
+              <p id="resultSummary"></p>
+              <div class="result-tags" id="resultTags"></div>
+            </div>
+
+            <div class="grid grid-2">
+              <div class="card"><h4>🎓 推荐专业方向</h4><ul id="majorList"></ul></div>
+              <div class="card"><h4>🚀 未来职业方向</h4><ul id="careerList"></ul></div>
+              <div class="card"><h4>🏫 香港院校参考（专业方向）</h4><ul id="uniList"></ul></div>
+              <div class="card"><h4>🧭 Non-JUPAS 申请提示</h4><ul id="nonJupasList"></ul></div>
+              <div class="card"><h4>📌 DSE 备考与选科重点</h4><ul id="dseTipList"></ul></div>
+              <div class="card"><h4>👣 下一步行动</h4><ul id="nextStepList"></ul></div>
+            </div>
+
+            <div class="card" style="margin-top: 18px;">
+              <h4>🌟 可参考的前辈路径</h4>
+              <div id="storyList"></div>
+            </div>
+
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px;">
+              <button class="primary-btn" id="printBtn" type="button">打印 / 保存为 PDF</button>
+              <button class="muted-btn" id="resetBtn2" type="button">重新填写</button>
+            </div>
+            <p class="small" style="margin-top: 10px;">结果由预设规则生成，不构成录取预测。课程名称与收生要求以院校官网为准。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 前辈 ================= -->
+  <section id="experts">
+    <div class="container">
+      <h2 class="section-title">前辈与榜样的成长路径</h2>
+      <p class="section-subtitle">看看不同领域的人是从哪些科目与训练走出来的。以下为公开资料整理，不使用未核实的名言。</p>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <h4>李嘉诚</h4>
+          <div style="color: var(--primary); font-size: 0.85rem; font-weight: 700;">长江集团创办人</div>
+          <p style="margin-top: 8px; font-size: 0.94rem; color: var(--muted);">少年由潮州移居香港，从塑胶厂推销员做起，建立地产、零售、基建与电讯业务。</p>
+          <div class="expert-tags"><span>商业</span><span>地产</span><span>零售</span></div>
+          <button class="expert-toggle" type="button">展开：与选科的关系 ▾</button>
+          <div class="expert-detail">对应方向：商科、经济、企业会计与财务。他的路径说明，商业判断与持续学习不一定由考试成绩决定，但语文、数学与沟通能力仍是基础。</div>
+        </div>
+
+        <div class="card">
+          <h4>高锟</h4>
+          <div style="color: var(--primary); font-size: 0.85rem; font-weight: 700;">光纤之父｜诺贝尔物理学奖 2009</div>
+          <p style="margin-top: 8px; font-size: 0.94rem; color: var(--muted);">在上海出生、香港成长，1966 年提出光纤通信构想；曾任香港中文大学校长。</p>
+          <div class="expert-tags"><span>物理</span><span>工程</span><span>科研</span></div>
+          <button class="expert-toggle" type="button">展开：与选科的关系 ▾</button>
+          <div class="expert-detail">对应方向：物理、数学延伸、工程与科研。物理＋M2 的组合最适合这类路径，但大学也会看英文与整体成绩。</div>
+        </div>
+
+        <div class="card">
+          <h4>汤晓鸥 <span class="small">（1968–2023）</span></h4>
+          <div style="color: var(--primary); font-size: 0.85rem; font-weight: 700;">商汤科技联合创始人｜计算机视觉学者</div>
+          <p style="margin-top: 8px; font-size: 0.94rem; color: var(--muted);">香港中文大学信息工程系教授，创办商汤科技，推动人脸识别与计算机视觉研究。</p>
+          <div class="expert-tags"><span>计算机</span><span>AI</span><span>创业</span></div>
+          <button class="expert-toggle" type="button">展开：与选科的关系 ▾</button>
+          <div class="expert-detail">对应方向：计算机科学、数据科学、工程。数学（尤其 M1／M2）与 ICT 是常见起点，编程项目与竞赛经历也有帮助。</div>
+        </div>
+
+        <div class="card">
+          <h4>袁国勇</h4>
+          <div style="color: var(--primary); font-size: 0.85rem; font-weight: 700;">香港大学微生物学系讲座教授</div>
+          <p style="margin-top: 8px; font-size: 0.94rem; color: var(--muted);">2003 年 SARS 期间参与鉴定冠状病毒，长期研究新发传染病与感染控制。</p>
+          <div class="expert-tags"><span>医学</span><span>传染病</span><span>科研</span></div>
+          <button class="expert-toggle" type="button">展开：与选科的关系 ▾</button>
+          <div class="expert-detail">对应方向：医学、生物医学、公共卫生。化学与生物是常见先修科，面试与沟通能力同样重要。</div>
+        </div>
+
+        <div class="card">
+          <h4>饶宗颐 <span class="small">（1917–2018）</span></h4>
+          <div style="color: var(--primary); font-size: 0.85rem; font-weight: 700;">国学大师</div>
+          <p style="margin-top: 8px; font-size: 0.94rem; color: var(--muted);">研究历史、文学、考古与艺术，曾任教于香港大学及香港中文大学。</p>
+          <div class="expert-tags"><span>人文</span><span>历史</span><span>艺术</span></div>
+          <button class="expert-toggle" type="button">展开：与选科的关系 ▾</button>
+          <div class="expert-detail">对应方向：人文、历史、中国文学、艺术史。中国历史＋中国文学＋视觉艺术的组合，适合走研究或文化机构路线。</div>
+        </div>
+
+        <div class="card">
+          <h4>严迅奇</h4>
+          <div style="color: var(--primary); font-size: 0.85rem; font-weight: 700;">香港建筑师</div>
+          <p style="margin-top: 8px; font-size: 0.94rem; color: var(--muted);">香港大学建筑系毕业；作品包括添马政府总部及立法会综合大楼、香港故宫文化博物馆。</p>
+          <div class="expert-tags"><span>建筑</span><span>设计</span></div>
+          <button class="expert-toggle" type="button">展开：与选科的关系 ▾</button>
+          <div class="expert-detail">对应方向：建筑、设计、城市研究。物理＋视觉艺术＋地理是常见组合；作品集与空间想像力往往比单一科成绩更关键。</div>
+        </div>
+
+        <div class="card">
+          <h4>林夕</h4>
+          <div style="color: var(--primary); font-size: 0.85rem; font-weight: 700;">填词人</div>
+          <p style="margin-top: 8px; font-size: 0.94rem; color: var(--muted);">香港大学文学院中文系毕业（主修翻译），填词作品逾 4,000 首。</p>
+          <div class="expert-tags"><span>中文</span><span>创作</span><span>人文</span></div>
+          <button class="expert-toggle" type="button">展开：与选科的关系 ▾</button>
+          <div class="expert-detail">对应方向：中文、文学、创意写作、传媒。中国文学＋英语文学＋历史的阅读量，是这类路径的重要积累。</div>
+        </div>
+
+        <div class="card">
+          <h4>钟南山 <span class="origin-badge">内地</span></h4>
+          <div style="color: var(--primary); font-size: 0.85rem; font-weight: 700;">呼吸病学专家｜中国工程院院士</div>
+          <p style="margin-top: 8px; font-size: 0.94rem; color: var(--muted);">1936 年生于南京，童年辗转贵阳、广州；长期在广州医科大学附属第一医院工作，参与 SARS 与新冠防控。</p>
+          <div class="expert-tags"><span>医学</span><span>呼吸科</span><span>公共卫生</span></div>
+          <button class="expert-toggle" type="button">展开：与选科的关系 ▾</button>
+          <div class="expert-detail">作为内地榜样放在此处，并非香港成长背景。对应方向：临床医学、公共卫生；化学＋生物是基础，长期体力与抗压能力同样重要。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 内地生专区 ================= -->
+  <section id="mainland" style="background: var(--soft-green);">
+    <div class="container">
+      <h2 class="section-title">内地生实用资讯</h2>
+      <p class="section-subtitle">身份、报考、时间线与费用。以下为一般性整理，具体日期与金额以考评局及院校公布为准。</p>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>1. 申请身份与渠道</h3>
+          <p>内地学生一般以「非本地学生」身份报读香港院校，不通过 JUPAS，而是经各校 Non-JUPAS / Direct Application 申请。</p>
+          <p style="margin-bottom: 0;">若持香港身份证、受养人签证或属香港本地生定义，身份与渠道可能不同，须先向院校确认。</p>
+        </div>
+        <div class="card">
+          <h3>2. 报考 DSE</h3>
+          <p>内地学生多以「自修生」身份报考；学校考生由学校统一报名。报名一般在每年 9–10 月，考试在次年 3–5 月。</p>
+          <p style="margin-bottom: 0;">考评局设有「内地试点考场」，适用范围与安排以官网为准；报名前先确认应考地点与资格。</p>
+        </div>
+        <div class="card">
+          <h3>3. 费用与签证</h3>
+          <p>非本地生学费由院校自定，通常明显高于本地生；另计住宿、生活、保险与签证费用。</p>
+          <p style="margin-bottom: 0;">获录取后，一般由院校协助申请学生签证／进入许可。奖学金多按成绩自动考虑，部分需另行申请。</p>
+        </div>
+        <div class="card">
+          <h3>4. 选校策略</h3>
+          <p>建议同时准备 2–3 个方向：冲刺、匹配、保底。香港与英国／澳洲可并行申请，但截止日期与文件要求不同。</p>
+          <p style="margin-bottom: 0;">不要只看总分：先核对每门课程的指定选修科、数学延伸要求、面试与作品集安排。</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 18px;">
+        <h3>Non-JUPAS 申请节奏（一般参考）</h3>
+        <ol class="timeline">
+          <li><strong>9–11 月</strong>了解课程与收生要求，准备成绩单、个人陈述、推荐信、语言成绩。</li>
+          <li><strong>11 月–次年 1 月</strong>各校申请开放与截止；不同院校差异很大，逐校记录。</li>
+          <li><strong>1–4 月</strong>面试、笔试或作品集提交。</li>
+          <li><strong>2–5 月</strong>陆续收到有条件／无条件取录；确认 offer 与留位费。</li>
+          <li><strong>7–8 月</strong>DSE 放榜后补交成绩，办理签证与住宿。</li>
+        </ol>
+        <p class="small" style="margin-bottom: 0;">以上为一般节奏，并非官方日期；部分院校设有早轮申请。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 成绩计算器 ================= -->
+  <section id="calculator">
+    <div class="container">
+      <h2 class="section-title">最佳 5 科计算器</h2>
+      <p class="section-subtitle">输入预测或实际等级，快速估算最佳 5 科总分，并检查常见的 332A33 要求。</p>
+
+      <div class="card">
+        <div class="calc-grid">
+          <div class="question" style="margin: 0;"><label for="gChi">中国语文</label><select id="gChi"></select></div>
+          <div class="question" style="margin: 0;"><label for="gEng">英国语文</label><select id="gEng"></select></div>
+          <div class="question" style="margin: 0;"><label for="gMath">数学（必修）</label><select id="gMath"></select></div>
+          <div class="question" style="margin: 0;"><label for="gCs">公民与社会发展</label>
+            <select id="gCs">
+              <option value="">未填</option>
+              <option value="A">达标 (Attained)</option>
+              <option value="NA">未达标 (Unattained)</option>
+            </select>
+          </div>
+          <div class="question" style="margin: 0;"><label for="gE1">选修科 1</label><select id="gE1"></select></div>
+          <div class="question" style="margin: 0;"><label for="gE2">选修科 2</label><select id="gE2"></select></div>
+          <div class="question" style="margin: 0;"><label for="gE3">选修科 3（可选）</label><select id="gE3"></select></div>
+        </div>
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+          <button class="primary-btn" id="calcBtn" type="button">计算最佳 5 科</button>
+          <button class="muted-btn" id="calcResetBtn" type="button">清空</button>
+        </div>
+        <p class="form-error" id="calcError" role="alert" hidden></p>
+
+        <div class="calc-result" id="calcOut" hidden aria-live="polite">
+          <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: baseline; margin-top: 18px;">
+            <div><span class="score-big" id="calcTotal">0</span><span class="small"> / 35</span></div>
+            <div id="calcStatus"></div>
+          </div>
+          <table class="data-table">
+            <thead><tr><th>科目</th><th>等级</th><th>分数</th></tr></thead>
+            <tbody id="calcDetail"></tbody>
+          </table>
+          <p class="small">计分换算：5**=7、5*=6、5=5、4=4、3=3、2=2、1=1、U=0。公民科只计达标，不换算分数，因此本工具以其余科目计算最佳 5 科。</p>
+          <p class="small" style="margin-bottom: 0;">本工具采用常见 7 分制；部分院校采用不同换算或加权，亦可能只计指定科目或最佳 6 科。此结果只作粗略参考，实际分数以院校公布为准。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 来源 ================= -->
+  <section id="sources">
+    <div class="container">
+      <h2 class="section-title">资料来源与更新</h2>
+      <p class="section-subtitle">以下链接于 2026 年 10 月 29 日核对。院校数字为 2026 年 3 月公布的数据。</p>
+
+      <ul class="sources-list">
+        <li><a href="https://www.hkeaa.edu.hk/en/recognition/local_studies_and_employment/local/" target="_blank" rel="noopener noreferrer">考评局：本地大学及高等教育机构入学要求（332A）</a></li>
+        <li><a href="https://www.hkeaa.edu.hk/en/hkdse/assessment/the_reporting_system/" target="_blank" rel="noopener noreferrer">考评局：成绩汇报制度（1–5**、U、公民科达标）</a></li>
+        <li><a href="https://www.hkeaa.edu.hk/en/recognition/introduction/" target="_blank" rel="noopener noreferrer">考评局：HKDSE 国际认可</a></li>
+        <li><a href="https://www.tkww.hk/a/202603/18/AP69baa420e4b04773b06a34ba.html" target="_blank" rel="noopener noreferrer">大公文匯（2026-03-18）：DSE 获逾 2,100 所非本地高校认可</a></li>
+        <li><a href="https://www.hkeaa.edu.hk/DocLibrary/IR/uk/HKDSE/P-UK-011_University_of_Cambridge_updated_Jan2024.pdf" target="_blank" rel="noopener noreferrer">考评局：剑桥大学 HKDSE 入学要求（2024-01）</a></li>
+        <li><a href="https://www.hkeaa.edu.hk/en/hkdse/admin/mainland_pilot_centres/" target="_blank" rel="noopener noreferrer">考评局：内地试点考场</a></li>
+        <li><a href="https://www.jupas.edu.hk/en/" target="_blank" rel="noopener noreferrer">JUPAS 联招</a></li>
+        <li><a href="https://www.edb.gov.hk/en/" target="_blank" rel="noopener noreferrer">香港教育局</a></li>
+      </ul>
+
+      <div class="info-notice">
+        <strong>免责声明：</strong>本页为升学探索工具，不是官方申请指引，也不构成录取预测或法律建议。收生要求、学费、截止日期每年变动，申请前必须查阅考评局及目标院校官网。
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    学途导航｜内地学生 HKDSE 升学探索平台<br>
+    资料整理至 2026 年 10 月 29 日 · 以考评局及院校官网最新公布为准
+  </div>
+</footer>
+
+<script>
+// ===== TESTABLE LOGIC START =====
+const GRADE_POINTS = { "5**": 7, "5*": 6, "5": 5, "4": 4, "3": 3, "2": 2, "1": 1, "U": 0 };
+
+const ELECTIVE_GROUPS = [
+  { label: "理科 (Science)", items: [
+    ["物理", "物理 (Physics)"], ["化学", "化学 (Chemistry)"], ["生物", "生物 (Biology)"]
+  ]},
+  { label: "个人、社会及人文教育 (PSHE)", items: [
+    ["经济", "经济 (Economics)"],
+    ["企业、会计与财务概论", "企业、会计与财务概论 (BAFS)"],
+    ["地理", "地理 (Geography)"],
+    ["历史", "历史 (History)"],
+    ["中国历史", "中国历史 (Chinese History)"],
+    ["旅游与款待", "旅游与款待 (THS)"],
+    ["伦理与宗教", "伦理与宗教 (ERS)"]
+  ]},
+  { label: "科技 (Technology)", items: [
+    ["资讯及通讯科技", "资讯及通讯科技 (ICT)"],
+    ["设计与应用科技", "设计与应用科技 (DAT)"],
+    ["健康管理与社会关怀", "健康管理与社会关怀 (HMSC)"],
+    ["科技与生活", "科技与生活 (TL)"]
+  ]},
+  { label: "艺术与体育 (Arts & PE)", items: [
+    ["视觉艺术", "视觉艺术 (Visual Arts)"],
+    ["音乐", "音乐 (Music)"],
+    ["体育", "体育 (PE)"]
+  ]},
+  { label: "数学延伸与其他 (Maths Ext / Others)", items: [
+    ["数学延伸单元一 (M1)", "数学延伸单元一 (M1)（微积分与统计）"],
+    ["数学延伸单元二 (M2)", "数学延伸单元二 (M2)（代数与微积分）"],
+    ["中国文学", "中国文学 (Chinese Literature)"],
+    ["英语文学", "英语文学 (Literature in English)"]
+  ]},
+  { label: "其他语言 (Category C)", items: [
+    ["法语", "法语 (French)"], ["德语", "德语 (German)"], ["日语", "日语 (Japanese)"],
+    ["韩语", "韩语 (Korean)"], ["西班牙语", "西班牙语 (Spanish)"]
+  ]}
+];
+
+const PATHWAYS = [
+  {
+    id: "tech",
+    title: "科技、工程与数据",
+    electives: ["物理", "化学", "资讯及通讯科技", "数学延伸单元一 (M1)", "数学延伸单元二 (M2)", "设计与应用科技"],
+    abilities: ["分析推理", "动手实验"],
+    styles: ["研究型", "实践型"],
+    goals: ["科技前沿"],
+    majors: ["计算机科学", "数据科学与人工智能", "电子及机械工程", "金融科技"],
+    careers: ["软件工程师", "数据科学家", "网络安全工程师", "产品经理"],
+    unis: [
+      { u: "香港科技大学", p: "计算机科学 / 工程" },
+      { u: "香港中文大学", p: "计算机科学 / 人工智能" },
+      { u: "香港大学", p: "工学 / 计算机科学" },
+      { u: "香港理工大学", p: "计算机 / 电子工程" }
+    ],
+    stories: ["tang", "ko"],
+    tips: ["工程与计算机课程普遍重视数学，部分要求 M1／M2 或物理。"]
+  },
+  {
+    id: "health",
+    title: "生命科学与医疗健康",
+    electives: ["生物", "化学", "健康管理与社会关怀", "体育"],
+    abilities: ["动手实验", "分析推理"],
+    styles: ["研究型", "实践型"],
+    goals: ["稳定发展"],
+    majors: ["医学", "生物医学", "药剂学", "护理学", "物理治疗"],
+    careers: ["医生", "护士", "药剂师", "物理治疗师", "科研人员"],
+    unis: [
+      { u: "香港大学", p: "医学 / 生物医学" },
+      { u: "香港中文大学", p: "医学 / 药剂" },
+      { u: "香港理工大学", p: "护理 / 物理治疗" },
+      { u: "香港浸会大学", p: "中医药" }
+    ],
+    stories: ["yuan", "zhong"],
+    tips: ["医学与药剂通常要求化学，部分要求生物；面试安排以院校为准。"]
+  },
+  {
+    id: "business",
+    title: "商科、金融与管理",
+    electives: ["经济", "企业、会计与财务概论", "数学延伸单元一 (M1)", "资讯及通讯科技"],
+    abilities: ["分析推理", "语言表达"],
+    styles: ["实践型", "研究型"],
+    goals: ["稳定发展", "国际视野"],
+    majors: ["工商管理", "会计学", "金融学", "经济学"],
+    careers: ["会计师", "金融分析师", "管理顾问", "创业者"],
+    unis: [
+      { u: "香港大学", p: "经济及金融 / 工商管理" },
+      { u: "香港中文大学", p: "工商管理 / 会计" },
+      { u: "香港科技大学", p: "商科 / 经济" },
+      { u: "香港城市大学", p: "商科 / 金融" }
+    ],
+    stories: ["li"],
+    tips: ["商科普遍看重英文与数学；部分课程对 M1 有额外加分。"]
+  },
+  {
+    id: "humanities",
+    title: "人文、法律与社会科学",
+    electives: ["历史", "中国历史", "地理", "中国文学", "英语文学", "伦理与宗教", "法语", "德语", "日语", "韩语", "西班牙语"],
+    abilities: ["语言表达", "分析推理"],
+    styles: ["研究型"],
+    goals: ["国际视野", "稳定发展"],
+    majors: ["法律", "新闻与传播", "语言与教育", "社会科学"],
+    careers: ["律师", "记者 / 编辑", "教师", "公共事务主任"],
+    unis: [
+      { u: "香港大学", p: "法律 / 文学" },
+      { u: "香港中文大学", p: "法律 / 社会科学" },
+      { u: "香港城市大学", p: "法律 / 媒体传播" },
+      { u: "香港教育大学", p: "教育 / 语言" }
+    ],
+    stories: ["rao", "lin"],
+    tips: ["法律与新闻重视英文写作与批判思考，面试可能涉及时事。"]
+  },
+  {
+    id: "design",
+    title: "创意、设计与建筑",
+    electives: ["视觉艺术", "音乐", "设计与应用科技", "科技与生活", "中国文学", "英语文学"],
+    abilities: ["创意设计", "语言表达"],
+    styles: ["创新型", "实践型"],
+    goals: ["国际视野"],
+    majors: ["设计学", "建筑学", "创意媒体", "音乐"],
+    careers: ["设计师", "建筑师", "创意总监", "音乐 / 艺术从业者"],
+    unis: [
+      { u: "香港理工大学", p: "设计 / 建筑" },
+      { u: "香港中文大学", p: "建筑" },
+      { u: "香港城市大学", p: "创意媒体" },
+      { u: "香港浸会大学", p: "视觉艺术 / 音乐" }
+    ],
+    stories: ["yim", "lin"],
+    tips: ["设计／建筑通常需作品集；部分课程要求数学或物理基础。"]
+  },
+  {
+    id: "science",
+    title: "理学与科研",
+    electives: ["物理", "化学", "生物", "数学延伸单元一 (M1)", "数学延伸单元二 (M2)"],
+    abilities: ["分析推理", "动手实验"],
+    styles: ["研究型"],
+    goals: ["科技前沿"],
+    majors: ["数学", "物理学", "化学", "生物科学"],
+    careers: ["科研人员", "数据分析师", "实验室主管", "大学教师"],
+    unis: [
+      { u: "香港大学", p: "理学院" },
+      { u: "香港中文大学", p: "理学院" },
+      { u: "香港科技大学", p: "理学院" },
+      { u: "香港城市大学", p: "理学院" }
+    ],
+    stories: ["ko", "tang"],
+    tips: ["理科课程重视数学与实验能力；M1／M2 对物理与数据方向有帮助。"]
+  },
+  {
+    id: "social",
+    title: "社会科学、教育与公共服务",
+    electives: ["地理", "历史", "中国历史", "健康管理与社会关怀", "伦理与宗教", "体育", "旅游与款待"],
+    abilities: ["语言表达", "分析推理"],
+    styles: ["实践型", "研究型"],
+    goals: ["稳定发展"],
+    majors: ["社会科学", "社会工作", "公共政策", "体育科学"],
+    careers: ["社工", "政策分析员", "教师", "体育教练"],
+    unis: [
+      { u: "香港中文大学", p: "社会科学" },
+      { u: "香港大学", p: "社会科学" },
+      { u: "香港城市大学", p: "社会科学" },
+      { u: "香港教育大学", p: "教育" }
+    ],
+    stories: ["rao"],
+    tips: ["社科重视英文与论述能力；社工课程或有面试与相关经历要求。"]
+  }
+];
+
+const GENERIC_PATHWAY = {
+  id: "general",
+  title: "多元跨学科方向",
+  electives: [], abilities: [], styles: [], goals: [],
+  majors: ["跨学科研究", "社会科学", "工商管理"],
+  careers: ["项目策划", "社区工作者", "管理培训生"],
+  unis: [
+    { u: "香港大学", p: "跨学科课程" },
+    { u: "香港中文大学", p: "跨学科课程" }
+  ],
+  stories: ["rao"],
+  tips: ["先确定 2–3 个可长期投入的兴趣，再对照课程要求。"]
+};
+
+const EXPERTS = {
+  li:   { name: "李嘉诚", role: "长江集团创办人", detail: "少年由潮州移居香港，从塑胶厂推销员做起，建立地产、零售、基建与电讯业务。" },
+  ko:   { name: "高锟", role: "光纤之父｜诺贝尔物理学奖 2009", detail: "在上海出生、香港成长，1966 年提出光纤通信构想；曾任香港中文大学校长。" },
+  tang: { name: "汤晓鸥", role: "商汤科技联合创始人｜计算机视觉学者", detail: "香港中文大学信息工程系教授，创办商汤科技，推动人脸识别与计算机视觉研究。" },
+  yuan: { name: "袁国勇", role: "香港大学微生物学系讲座教授", detail: "2003 年 SARS 期间参与鉴定冠状病毒，长期研究新发传染病与感染控制。" },
+  rao:  { name: "饶宗颐", role: "国学大师", detail: "研究历史、文学、考古与艺术，曾任教于香港大学及香港中文大学。" },
+  yim:  { name: "严迅奇", role: "香港建筑师", detail: "香港大学建筑系毕业；作品包括添马政府总部及立法会综合大楼、香港故宫文化博物馆。" },
+  lin:  { name: "林夕", role: "填词人", detail: "香港大学文学院中文系毕业（主修翻译），填词作品逾 4,000 首。" },
+  zhong:{ name: "钟南山", role: "呼吸病学专家｜中国工程院院士", detail: "1936 年生于南京，成长于广州；长期在广州医科大学附属第一医院工作。" }
+};
+
+const REGION_TIPS = {
+  "香港": "香港院校以 Non-JUPAS 申请，留意各校截止日期与面试安排。",
+  "英国": "英国院校一般经 UCAS 申请；剑桥等校在考评局网站列有 DSE 具体要求，通常要求多科 5*／5**，以官网为准。",
+  "澳洲": "澳洲政府认可 DSE 等同澳洲高中证书，可直接申请；个别课程有先修科要求。",
+  "加拿大": "加拿大大学多按省份要求审核 DSE，通常看最佳 5–6 科，英语要求另计。",
+  "不限": "香港与海外可同时申请，但截止日期与文件要求不同，建议分别列表管理。"
+};
+
+function scorePathway(pathway, s) {
+  const electives = s.electives.filter(function (v) { return v && v !== "无"; });
+  let score = 0;
+  score += electives.filter(function (v) { return pathway.electives.indexOf(v) !== -1; }).length * 3;
+  score += s.abilities.filter(function (v) { return pathway.abilities.indexOf(v) !== -1; }).length * 2;
+  if (pathway.styles.indexOf(s.style) !== -1) score += 2;
+  if (pathway.goals.indexOf(s.goal) !== -1) score += 2;
+  return score;
+}
+
+function pickPathways(s) {
+  const electives = s.electives.filter(function (v) { return v && v !== "无"; });
+  if (!electives.length) return [GENERIC_PATHWAY];
+
+  const ranked = PATHWAYS.map(function (p, i) {
+    const hits = electives.filter(function (v) { return p.electives.indexOf(v) !== -1; }).length;
+    return { p: p, score: scorePathway(p, s), hits: hits, i: i };
+  }).filter(function (x) { return x.hits > 0; })
+    .sort(function (a, b) { return b.score - a.score || a.i - b.i; })
+    .slice(0, 2)
+    .map(function (x) { return x.p; });
+
+  return ranked.length ? ranked : [GENERIC_PATHWAY];
+}
+
+function uniqueList(arr) {
+  const seen = {};
+  return arr.filter(function (x) {
+    const key = typeof x === "string" ? x : x.u + "|" + x.p;
+    if (seen[key]) return false;
+    seen[key] = true;
+    return true;
+  });
+}
+
+function check332A33(g, cs) {
+  const fails = [];
+  if (!(GRADE_POINTS[g.chi] >= 3)) fails.push("中文未达第 3 级");
+  if (!(GRADE_POINTS[g.eng] >= 3)) fails.push("英文未达第 3 级");
+  if (!(GRADE_POINTS[g.math] >= 2)) fails.push("数学未达第 2 级");
+  if (cs !== "A") fails.push("公民科未达标或未填");
+  const electivesAt3 = [g.e1, g.e2, g.e3].filter(function (x) {
+    return x && GRADE_POINTS[x] >= 3;
+  }).length;
+  if (electivesAt3 < 2) fails.push("未有两科选修达第 3 级");
+  return { ok: fails.length === 0, fails: fails };
+}
+
+function bestFive(g) {
+  const entries = [
+    ["中国语文", g.chi], ["英国语文", g.eng], ["数学（必修）", g.math],
+    ["选修科 1", g.e1], ["选修科 2", g.e2], ["选修科 3", g.e3]
+  ].filter(function (pair) { return pair[1]; });
+
+  return entries.map(function (pair) {
+    return { name: pair[0], grade: pair[1], points: GRADE_POINTS[pair[1]] };
+  }).sort(function (a, b) { return b.points - a.points; });
+}
+// ===== TESTABLE LOGIC END =====
+
+(function () {
+  "use strict";
+
+  const STORAGE_KEY = "dse-navigator-v1";
+  const STEP_TITLES = ["选择 DSE 科目", "能力倾向", "学习偏好", "确认并生成"];
+  let state = freshState();
+  let restored = false;
+
+  function $(id) { return document.getElementById(id); }
+
+  function freshState() {
+    return { step: 1, electives: ["", "", ""], abilities: [], style: "研究型", goal: "稳定发展", region: "不限" };
+  }
+
+  function loadState() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      if (!parsed || typeof parsed !== "object") return null;
+      return {
+        electives: Array.isArray(parsed.electives) ? parsed.electives.slice(0, 3) : ["", "", ""],
+        abilities: Array.isArray(parsed.abilities) ? parsed.abilities : [],
+        style: typeof parsed.style === "string" ? parsed.style : "研究型",
+        goal: typeof parsed.goal === "string" ? parsed.goal : "稳定发展",
+        region: typeof parsed.region === "string" ? parsed.region : "不限"
+      };
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function saveState() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) { /* file:// may block storage */ }
+  }
+
+  function buildElectiveSelect(select, includeNone) {
+    if (includeNone) {
+      const none = document.createElement("option");
+      none.value = "无";
+      none.textContent = "无（仅修两科选修）";
+      select.appendChild(none);
+    }
+    ELECTIVE_GROUPS.forEach(function (group) {
+      const og = document.createElement("optgroup");
+      og.label = group.label;
+      group.items.forEach(function (item) {
+        const opt = document.createElement("option");
+        opt.value = item[0];
+        opt.textContent = item[1];
+        og.appendChild(opt);
+      });
+      select.appendChild(og);
+    });
+  }
+
+  function syncControls() {
+    [0, 1, 2].forEach(function (i) {
+      const sel = $("elective" + (i + 1));
+      sel.value = state.electives[i] || "";
+    });
+
+    document.querySelectorAll("#abilities .option").forEach(function (btn) {
+      const on = state.abilities.indexOf(btn.dataset.value) !== -1;
+      btn.classList.toggle("selected", on);
+      btn.setAttribute("aria-pressed", String(on));
+    });
+
+    $("style").value = state.style;
+    $("goal").value = state.goal;
+    $("region").value = state.region;
+  }
+
+  function updateReview() {
+    const chosen = state.electives.filter(function (v) { return v && v !== "无"; });
+    $("reviewSubjects").textContent = chosen.length ? chosen.join("、") : "未选择";
+    $("reviewAbilities").textContent = state.abilities.length ? state.abilities.join("、") : "未选择";
+    $("reviewStyle").textContent = state.style;
+    $("reviewGoal").textContent = state.goal;
+    $("reviewRegion").textContent = state.region;
+  }
+
+  function setError(message) {
+    const box = $("formError");
+    box.textContent = message || "";
+    box.hidden = !message;
+    if (message) box.focus();
+  }
+
+  function updateStep() {
+    document.querySelectorAll(".step").forEach(function (step) {
+      const active = Number(step.dataset.step) === state.step;
+      step.classList.toggle("active", active);
+      step.setAttribute("aria-hidden", String(!active));
+    });
+
+    const percent = (state.step / 4) * 100;
+    $("progress").style.width = percent + "%";
+    $("progress").parentElement.setAttribute("aria-valuenow", String(state.step));
+    $("stepLabel").textContent = "第 " + state.step + " 步：" + STEP_TITLES[state.step - 1];
+    $("liveStatus").textContent = "第 " + state.step + " 步，共 4 步：" + STEP_TITLES[state.step - 1];
+    $("prevBtn").disabled = state.step === 1;
+    $("nextBtn").textContent = state.step === 4 ? "生成探索结果" : "下一步";
+    $("result").classList.remove("active");
+    setError("");
+  }
+
+  function validateStep1() {
+    const e1 = state.electives[0];
+    const e2 = state.electives[1];
+    const e3 = state.electives[2];
+    if (!e1 || !e2) return "请选择选修科 1 和选修科 2。";
+    if (e1 === e2) return "两科选修不能相同，请重新选择。";
+    if (e3 && e3 !== "无" && (e3 === e1 || e3 === e2)) return "选修科不能重复，请重新选择。";
+    return "";
+  }
+
+  function fillList(id, items) {
+    const list = $(id);
+    list.innerHTML = "";
+    if (!items.length) {
+      const li = document.createElement("li");
+      li.textContent = "暂无";
+      list.appendChild(li);
+      return;
+    }
+    items.forEach(function (item) {
+      const li = document.createElement("li");
+      li.textContent = item;
+      list.appendChild(li);
+    });
+  }
+
+  function renderResult(picked) {
+    const top = picked[0];
+    const second = picked[1] || null;
+    const abilitiesText = state.abilities.length ? state.abilities.join("、") : "多元";
+
+    $("resultTitle").textContent = second ? top.title + " × " + second.title : top.title;
+    $("resultSummary").textContent = second
+      ? "你的选修组合同时指向这两个方向。建议先按「" + top.title + "」准备核心申请材料，再以「" + second.title + "」拓展跨学科选择。你偏好的" + abilitiesText + "能力与「" + state.style + "」学习方式，可作为选课与面试叙事的线索。"
+      : "你的选修组合与「" + top.title + "」最匹配。你偏好的" + abilitiesText + "能力与「" + state.style + "」学习方式，适合沿这个方向深入；但仍要逐校核对选修科与数学延伸要求。";
+
+    const tags = $("resultTags");
+    tags.innerHTML = "";
+    picked.forEach(function (p) {
+      const span = document.createElement("span");
+      span.className = "tag-chip";
+      span.textContent = p.title;
+      tags.appendChild(span);
+    });
+    [state.style, state.goal, state.region].forEach(function (text) {
+      const span = document.createElement("span");
+      span.className = "tag-chip";
+      span.textContent = text;
+      tags.appendChild(span);
+    });
+
+    fillList("majorList", uniqueList(picked.reduce(function (acc, p) { return acc.concat(p.majors); }, [])).slice(0, 8));
+    fillList("careerList", uniqueList(picked.reduce(function (acc, p) { return acc.concat(p.careers); }, [])).slice(0, 8));
+
+    const unis = uniqueList(picked.reduce(function (acc, p) { return acc.concat(p.unis); }, [])).slice(0, 6);
+    const uniList = $("uniList");
+    uniList.innerHTML = "";
+    unis.forEach(function (item) {
+      const li = document.createElement("li");
+      const strong = document.createElement("strong");
+      strong.textContent = item.u;
+      li.appendChild(strong);
+      li.appendChild(document.createTextNode(" — " + item.p));
+      uniList.appendChild(li);
+    });
+
+    const nonJupas = [
+      "内地学生一般以非本地生身份经 Non-JUPAS / Direct Application 申请，不通过 JUPAS。",
+      "各校截止日期不同，常见为 11 月至次年 1 月；面试多在 1–4 月。",
+      REGION_TIPS[state.region] || REGION_TIPS["不限"],
+      "放榜后补交 DSE 成绩，并留意有条件取录的分数要求。"
+    ];
+    fillList("nonJupasList", nonJupas);
+
+    const tips = [
+      "332A 只是四科核心的最低申请要求；多数课程另要求两科选修达第 3 级（332A33）。",
+      "公民与社会发展科只计「达标／未达标」，不换算 1–5**。"
+    ].concat(picked.reduce(function (acc, p) { return acc.concat(p.tips); }, [])).slice(0, 6);
+    fillList("dseTipList", tips);
+
+    fillList("nextStepList", [
+      "逐校核对指定选修科、M1／M2 与面试要求。",
+      "准备成绩单、个人陈述、推荐信与语言成绩。",
+      "列出 2–3 个方向，并记录每所院校的截止日期。",
+      "用下方成绩计算器估算最佳 5 科总分。",
+      "参加院校资讯日或线上讲座，确认课程内容。"
+    ]);
+
+    const storyIds = uniqueList(picked.reduce(function (acc, p) { return acc.concat(p.stories); }, []));
+    const storyList = $("storyList");
+    storyList.innerHTML = "";
+    storyIds.forEach(function (id) {
+      const expert = EXPERTS[id];
+      if (!expert) return;
+      const box = document.createElement("div");
+      box.className = "story-mini";
+      const name = document.createElement("strong");
+      name.textContent = expert.name;
+      const role = document.createElement("span");
+      role.textContent = expert.role;
+      const detail = document.createElement("p");
+      detail.textContent = expert.detail;
+      box.appendChild(name);
+      box.appendChild(role);
+      box.appendChild(detail);
+      storyList.appendChild(box);
+    });
+
+    const result = $("result");
+    result.classList.add("active");
+    result.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function generateResult() {
+    renderResult(pickPathways(state));
+  }
+
+  /* ---------- wiring ---------- */
+  buildElectiveSelect($("elective1"), false);
+  buildElectiveSelect($("elective2"), false);
+  buildElectiveSelect($("elective3"), true);
+
+  const stored = loadState();
+  if (stored) {
+    state.electives = stored.electives;
+    state.abilities = stored.abilities;
+    state.style = stored.style;
+    state.goal = stored.goal;
+    state.region = stored.region;
+    restored = Boolean(stored.electives.some(Boolean) || stored.abilities.length);
+  }
+
+  syncControls();
+  updateReview();
+  updateStep();
+
+  if (restored) $("restoreNotice").hidden = false;
+
+  [0, 1, 2].forEach(function (i) {
+    $("elective" + (i + 1)).addEventListener("change", function (event) {
+      state.electives[i] = event.target.value;
+      saveState();
+      updateReview();
+      setError("");
+    });
+  });
+
+  document.querySelectorAll("#abilities .option").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      const value = btn.dataset.value;
+      const index = state.abilities.indexOf(value);
+      if (index === -1) state.abilities.push(value);
+      else state.abilities.splice(index, 1);
+
+      const on = state.abilities.indexOf(value) !== -1;
+      btn.classList.toggle("selected", on);
+      btn.setAttribute("aria-pressed", String(on));
+      saveState();
+      updateReview();
+      setError("");
+    });
+  });
+
+  ["style", "goal", "region"].forEach(function (id) {
+    $(id).addEventListener("change", function (event) {
+      state[id] = event.target.value;
+      saveState();
+      updateReview();
+    });
+  });
+
+  $("prevBtn").addEventListener("click", function () {
+    if (state.step > 1) {
+      state.step -= 1;
+      updateStep();
+    }
+  });
+
+  $("nextBtn").addEventListener("click", function () {
+    if (state.step === 1) {
+      const message = validateStep1();
+      if (message) { setError(message); return; }
+    }
+    if (state.step === 2 && state.abilities.length === 0) {
+      setError("请至少选择一项能力。");
+      return;
+    }
+    setError("");
+    if (state.step < 4) {
+      state.step += 1;
+      updateStep();
+    } else {
+      generateResult();
+    }
+  });
+
+  function resetAll() {
+    if (typeof window.confirm === "function" && !window.confirm("确定要清除已填写内容并重新开始吗？")) return;
+    state = freshState();
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) { /* ignore */ }
+    syncControls();
+    updateReview();
+    updateStep();
+    $("result").classList.remove("active");
+    $("restoreNotice").hidden = true;
+    setError("");
+    document.getElementById("explore").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  $("resetBtn").addEventListener("click", resetAll);
+  $("resetBtn2").addEventListener("click", resetAll);
+
+  $("printBtn").addEventListener("click", function () {
+    document.body.classList.add("print-result");
+    window.print();
+  });
+  window.addEventListener("afterprint", function () {
+    document.body.classList.remove("print-result");
+  });
+
+  document.querySelectorAll(".expert-toggle").forEach(function (btn) {
+    btn.setAttribute("aria-expanded", "false");
+    btn.addEventListener("click", function () {
+      const detail = btn.nextElementSibling;
+      if (!detail || !detail.classList.contains("expert-detail")) return;
+      const open = detail.classList.toggle("open");
+      btn.setAttribute("aria-expanded", String(open));
+      btn.textContent = open ? "收起 ▴" : "展开：与选科的关系 ▾";
+    });
+  });
+
+  /* ---------- calculator ---------- */
+  const GRADES = ["5**", "5*", "5", "4", "3", "2", "1", "U"];
+
+  function buildGradeSelect(select) {
+    const blank = document.createElement("option");
+    blank.value = "";
+    blank.textContent = "未填";
+    select.appendChild(blank);
+    GRADES.forEach(function (grade) {
+      const opt = document.createElement("option");
+      opt.value = grade;
+      opt.textContent = grade;
+      select.appendChild(opt);
+    });
+  }
+
+  ["gChi", "gEng", "gMath", "gE1", "gE2", "gE3"].forEach(function (id) {
+    buildGradeSelect($(id));
+  });
+
+  function readGrades() {
+    return {
+      chi: $("gChi").value, eng: $("gEng").value, math: $("gMath").value,
+      e1: $("gE1").value, e2: $("gE2").value, e3: $("gE3").value
+    };
+  }
+
+  function runCalc() {
+    const g = readGrades();
+    const cs = $("gCs").value;
+    const ranked = bestFive(g);
+    const error = $("calcError");
+
+    if (ranked.length < 5) {
+      error.textContent = "请至少填写 5 科（核心＋选修）的成绩；公民科不参与计分。";
+      error.hidden = false;
+      $("calcOut").hidden = true;
+      return;
+    }
+    error.hidden = true;
+
+    const total = ranked.slice(0, 5).reduce(function (sum, item) { return sum + item.points; }, 0);
+    $("calcTotal").textContent = String(total);
+
+    const check = check332A33(g, cs);
+    const status = $("calcStatus");
+    status.innerHTML = "";
+    const badge = document.createElement("span");
+    badge.className = "status-badge " + (check.ok ? "ok" : "warn");
+    badge.textContent = check.ok ? "符合常见 332A33 要求" : "未完全符合 332A33";
+    status.appendChild(badge);
+
+    if (!check.ok) {
+      const note = document.createElement("p");
+      note.className = "small";
+      note.style.margin = "8px 0 0";
+      note.textContent = "待改善：" + check.fails.join("；") + "。";
+      status.appendChild(note);
+    }
+
+    const tbody = $("calcDetail");
+    tbody.innerHTML = "";
+    ranked.forEach(function (item, index) {
+      const tr = document.createElement("tr");
+      if (index < 5) tr.className = "best";
+      const name = document.createElement("td");
+      name.textContent = item.name;
+      const grade = document.createElement("td");
+      grade.textContent = item.grade;
+      const points = document.createElement("td");
+      points.textContent = String(item.points);
+      tr.appendChild(name);
+      tr.appendChild(grade);
+      tr.appendChild(points);
+      tbody.appendChild(tr);
+    });
+
+    $("calcOut").hidden = false;
+  }
+
+  $("calcBtn").addEventListener("click", runCalc);
+  $("calcResetBtn").addEventListener("click", function () {
+    ["gChi", "gEng", "gMath", "gE1", "gE2", "gE3"].forEach(function (id) { $(id).value = ""; });
+    $("gCs").value = "";
+    $("calcOut").hidden = true;
+    $("calcError").hidden = true;
+  });
+})();
+</script>
+</body>
+</html>
