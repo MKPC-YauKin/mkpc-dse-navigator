@@ -215,13 +215,14 @@
     gap: 16px; flex-wrap: wrap; align-items: center;
   }
   .progress-wrap { width: 260px; max-width: 100%; background: #dbeafe; border-radius: 999px; height: 12px; overflow: hidden; }
-  .progress { height: 100%; width: 25%; background: linear-gradient(90deg, var(--primary), var(--secondary)); border-radius: inherit; transition: 0.25s ease; }
+  .progress { height: 100%; width: 20%; background: linear-gradient(90deg, var(--primary), var(--secondary)); border-radius: inherit; transition: 0.25s ease; }
   .app-body { padding: 24px; }
   .step { display: none; }
   .step.active { display: block; animation: fade 0.25s ease; }
   @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
   .option-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 16px; }
+  .interest-grid { grid-template-columns: repeat(3, 1fr); }
   .option {
     border: 1.5px solid var(--border); background: #fff; border-radius: 16px;
     padding: 14px; cursor: pointer; transition: 0.18s ease; min-height: 104px;
@@ -575,7 +576,7 @@
   <section id="explore" style="background: var(--bg);">
     <div class="container">
       <h2 class="section-title">方向匹配器</h2>
-      <p class="section-subtitle">这是一个规则型匹配工具：根据你的选修科、能力与偏好，从预设方向中排序。它不会生成新文字建议，也不替代院校官网。</p>
+      <p class="section-subtitle">这是一个规则型匹配工具：根据你的选修科、兴趣、能力与偏好，从预设方向中排序。它不会生成新文字建议，也不替代院校官网。</p>
 
       <div class="app-shell">
         <div class="app-header">
@@ -583,7 +584,7 @@
             <strong id="stepLabel">第 1 步：选择 DSE 科目</strong>
             <p class="small" style="margin: 2px 0 0;" id="restoreNotice" hidden>已恢复上次填写（仅保存在本机浏览器）。</p>
           </div>
-          <div class="progress-wrap" role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1" aria-label="填写进度">
+          <div class="progress-wrap" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1" aria-label="填写进度">
             <div class="progress" id="progress"></div>
           </div>
         </div>
@@ -620,8 +621,43 @@
             <p class="field-hint">如只修两科选修，第三科请选「无」。选修科不可重复。</p>
           </div>
 
-          <!-- Step 2 -->
+          <!-- Step 2: Interests -->
           <div class="step" data-step="2" aria-hidden="true">
+            <h3>你对哪些领域最感兴趣？<span class="small">（可多选，至少一项）</span></h3>
+            <p class="field-hint">参考加德纳多元智能的八类智能，另加 STEAM 跨学科兴趣。兴趣会与选修科一起影响推荐课程。</p>
+            <div class="option-grid interest-grid" id="interests">
+              <button class="option" type="button" data-value="语言与文学" aria-pressed="false">
+                <span class="emoji" aria-hidden="true">📖</span><strong>语言与文学</strong><small>阅读、写作、表达</small>
+              </button>
+              <button class="option" type="button" data-value="逻辑与数据" aria-pressed="false">
+                <span class="emoji" aria-hidden="true">🔢</span><strong>逻辑与数据</strong><small>推理、数学、分析</small>
+              </button>
+              <button class="option" type="button" data-value="音乐与表演" aria-pressed="false">
+                <span class="emoji" aria-hidden="true">🎵</span><strong>音乐与表演</strong><small>演奏、创作、舞台</small>
+              </button>
+              <button class="option" type="button" data-value="视觉与设计" aria-pressed="false">
+                <span class="emoji" aria-hidden="true">🎨</span><strong>视觉与设计</strong><small>绘画、设计、空间</small>
+              </button>
+              <button class="option" type="button" data-value="运动与身体" aria-pressed="false">
+                <span class="emoji" aria-hidden="true">🏃</span><strong>运动与身体</strong><small>体育、动作、健康</small>
+              </button>
+              <button class="option" type="button" data-value="人际与领导" aria-pressed="false">
+                <span class="emoji" aria-hidden="true">🤝</span><strong>人际与领导</strong><small>沟通、协作、组织</small>
+              </button>
+              <button class="option" type="button" data-value="自我与反思" aria-pressed="false">
+                <span class="emoji" aria-hidden="true">🧠</span><strong>自我与反思</strong><small>内省、写作、心理</small>
+              </button>
+              <button class="option" type="button" data-value="自然与环境" aria-pressed="false">
+                <span class="emoji" aria-hidden="true">🌿</span><strong>自然与环境</strong><small>生物、地理、生态</small>
+              </button>
+              <button class="option" type="button" data-value="科技与工程" aria-pressed="false">
+                <span class="emoji" aria-hidden="true">🤖</span><strong>科技与工程</strong><small>编程、机械、STEAM</small>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3: Abilities -->
+          <div class="step" data-step="3" aria-hidden="true">
             <h3>你较擅长哪些能力？<span class="small">（可多选，至少一项）</span></h3>
             <div class="option-grid" id="abilities">
               <button class="option" type="button" data-value="分析推理" aria-pressed="false">
@@ -639,8 +675,8 @@
             </div>
           </div>
 
-          <!-- Step 3 -->
-          <div class="step" data-step="3" aria-hidden="true">
+          <!-- Step 4 -->
+          <div class="step" data-step="4" aria-hidden="true">
             <h3>你的学习偏好</h3>
             <div class="grid grid-3" style="gap: 14px;">
               <div class="question" style="margin: 0;">
@@ -672,12 +708,13 @@
             </div>
           </div>
 
-          <!-- Step 4 -->
-          <div class="step" data-step="4" aria-hidden="true">
+          <!-- Step 5 -->
+          <div class="step" data-step="5" aria-hidden="true">
             <h3>确认你的资料</h3>
             <div class="card" style="background: #f8fafc;">
               <p><strong>四科核心：</strong>中国语文、英国语文、数学、公民与社会发展</p>
               <p><strong>选修科：</strong><span id="reviewSubjects">未选择</span></p>
+              <p><strong>兴趣领域：</strong><span id="reviewInterests">未选择</span></p>
               <p><strong>擅长能力：</strong><span id="reviewAbilities">未选择</span></p>
               <p><strong>学习方式：</strong><span id="reviewStyle">研究型</span></p>
               <p><strong>发展重心：</strong><span id="reviewGoal">稳定发展</span></p>
@@ -705,9 +742,9 @@
             </div>
 
             <div class="grid grid-2">
-              <div class="card"><h4>🎓 推荐专业方向</h4><ul id="majorList"></ul></div>
+              <div class="card"><h4>🎓 推荐课程类型（示例）</h4><ul id="majorList"></ul></div>
               <div class="card"><h4>🚀 未来职业方向</h4><ul id="careerList"></ul></div>
-              <div class="card"><h4>🏫 香港院校参考（专业方向）</h4><ul id="uniList"></ul></div>
+              <div class="card"><h4>🏫 院校与课程示例</h4><ul id="uniList"></ul></div>
               <div class="card"><h4>🧭 Non-JUPAS 申请提示</h4><ul id="nonJupasList"></ul></div>
               <div class="card"><h4>📌 DSE 备考与选科重点</h4><ul id="dseTipList"></ul></div>
               <div class="card"><h4>👣 下一步行动</h4><ul id="nextStepList"></ul></div>
@@ -797,6 +834,24 @@
           <div class="expert-tags"><span>中文</span><span>创作</span><span>人文</span></div>
           <button class="expert-toggle" type="button">展开：与选科的关系 ▾</button>
           <div class="expert-detail">对应方向：中文、文学、创意写作、传媒。中国文学＋英语文学＋历史的阅读量，是这类路径的重要积累。</div>
+        </div>
+
+        <div class="card">
+          <h4>李丽珊</h4>
+          <div style="color: var(--primary); font-size: 0.85rem; font-weight: 700;">香港首位奥运金牌得主｜滑浪风帆</div>
+          <p style="margin-top: 8px; font-size: 0.94rem; color: var(--muted);">1996 年亚特兰大奥运会滑浪风帆金牌，为香港赢得首面奥运金牌；退役后参与体育推广与青少年培训。</p>
+          <div class="expert-tags"><span>体育</span><span>奥运</span><span>运动管理</span></div>
+          <button class="expert-toggle" type="button">展开：与选科的关系 ▾</button>
+          <div class="expert-detail">对应方向：体育科学、体育教育、运动管理。体育科与长期体能训练是常见起点；面试或体能测试也常被重视。</div>
+        </div>
+
+        <div class="card">
+          <h4>顾嘉煇</h4>
+          <div style="color: var(--primary); font-size: 0.85rem; font-weight: 700;">作曲家｜香港乐坛教父</div>
+          <p style="margin-top: 8px; font-size: 0.94rem; color: var(--muted);">创作大量粤语流行曲与电视剧主题曲，推动香港流行音乐发展。</p>
+          <div class="expert-tags"><span>音乐</span><span>作曲</span><span>流行文化</span></div>
+          <button class="expert-toggle" type="button">展开：与选科的关系 ▾</button>
+          <div class="expert-detail">对应方向：音乐研究、作曲、音乐教育。乐理、乐器／声乐训练与作品集是常见准备。</div>
         </div>
 
         <div class="card">
@@ -903,7 +958,7 @@
   <section id="sources">
     <div class="container">
       <h2 class="section-title">资料来源与更新</h2>
-      <p class="section-subtitle">以下链接于 2026 年 10 月 29 日核对。院校数字为 2026 年 3 月公布的数据。</p>
+      <p class="section-subtitle">以下链接于 2026 年 10 月 30 日核对。院校数字为 2026 年 3 月公布的数据。</p>
 
       <ul class="sources-list">
         <li><a href="https://www.hkeaa.edu.hk/en/recognition/local_studies_and_employment/local/" target="_blank" rel="noopener noreferrer">考评局：本地大学及高等教育机构入学要求（332A）</a></li>
@@ -927,7 +982,7 @@
 <footer>
   <div class="container">
     学途导航｜内地学生 HKDSE 升学探索平台<br>
-    资料整理至 2026 年 10 月 29 日 · 以考评局及院校官网最新公布为准
+    资料整理至 2026 年 10 月 30 日 · 以考评局及院校官网最新公布为准
   </div>
 </footer>
 
@@ -971,139 +1026,220 @@ const ELECTIVE_GROUPS = [
   ]}
 ];
 
+const INTERESTS = [
+  { value: "语言与文学", emoji: "📖", hint: "阅读、写作、表达" },
+  { value: "逻辑与数据", emoji: "🔢", hint: "推理、数学、分析" },
+  { value: "音乐与表演", emoji: "🎵", hint: "演奏、创作、舞台" },
+  { value: "视觉与设计", emoji: "🎨", hint: "绘画、设计、空间" },
+  { value: "运动与身体", emoji: "🏃", hint: "体育、动作、健康" },
+  { value: "人际与领导", emoji: "🤝", hint: "沟通、协作、组织" },
+  { value: "自我与反思", emoji: "🧠", hint: "内省、写作、心理" },
+  { value: "自然与环境", emoji: "🌿", hint: "生物、地理、生态" },
+  { value: "科技与工程", emoji: "🤖", hint: "编程、机械、STEAM" }
+];
+
 const PATHWAYS = [
   {
-    id: "tech",
-    title: "科技、工程与数据",
-    electives: ["物理", "化学", "资讯及通讯科技", "数学延伸单元一 (M1)", "数学延伸单元二 (M2)", "设计与应用科技"],
-    abilities: ["分析推理", "动手实验"],
-    styles: ["研究型", "实践型"],
-    goals: ["科技前沿"],
-    majors: ["计算机科学", "数据科学与人工智能", "电子及机械工程", "金融科技"],
-    careers: ["软件工程师", "数据科学家", "网络安全工程师", "产品经理"],
+    id: "sports",
+    title: "体育、运动与健康科学",
+    electives: ["体育", "健康管理与社会关怀", "生物"],
+    interests: ["运动与身体", "自然与环境", "人际与领导"],
+    abilities: ["动手实验", "语言表达"],
+    styles: ["实践型", "研究型"],
+    goals: ["稳定发展"],
+    majors: ["体育科学（BSc）", "体育教育（BEd）", "运动管理（BSc）", "物理治疗（BSc）"],
+    careers: ["体育教师", "运动科学研究员", "体能教练", "康乐及运动管理"],
     unis: [
-      { u: "香港科技大学", p: "计算机科学 / 工程" },
-      { u: "香港中文大学", p: "计算机科学 / 人工智能" },
-      { u: "香港大学", p: "工学 / 计算机科学" },
-      { u: "香港理工大学", p: "计算机 / 电子工程" }
+      { u: "香港中文大学", p: "运动科学与体育教育（BSc）" },
+      { u: "香港教育大学", p: "体育教育（BEd）" },
+      { u: "香港理工大学", p: "物理治疗（BSc）" },
+      { u: "香港大学", p: "运动与健康（BSc）" },
+      { u: "香港浸会大学", p: "体育及康乐管理（BA）" }
     ],
-    stories: ["tang", "ko"],
-    tips: ["工程与计算机课程普遍重视数学，部分要求 M1／M2 或物理。"]
+    stories: ["lee"],
+    tips: ["体育科是体育教育、运动科学的主要起点；物理治疗通常也要求生物。"]
   },
   {
-    id: "health",
-    title: "生命科学与医疗健康",
-    electives: ["生物", "化学", "健康管理与社会关怀", "体育"],
-    abilities: ["动手实验", "分析推理"],
-    styles: ["研究型", "实践型"],
-    goals: ["稳定发展"],
-    majors: ["医学", "生物医学", "药剂学", "护理学", "物理治疗"],
-    careers: ["医生", "护士", "药剂师", "物理治疗师", "科研人员"],
+    id: "music",
+    title: "音乐、表演与创意艺术",
+    electives: ["音乐", "视觉艺术", "中国文学", "英语文学"],
+    interests: ["音乐与表演", "视觉与设计"],
+    abilities: ["创意设计", "语言表达"],
+    styles: ["创新型", "实践型"],
+    goals: ["国际视野"],
+    majors: ["音乐研究（BA）", "音乐教育（BEd）", "作曲／演奏（BMus）", "创意艺术（BA）"],
+    careers: ["音乐教师", "演奏家／作曲家", "艺术行政", "创意产业"],
     unis: [
-      { u: "香港大学", p: "医学 / 生物医学" },
-      { u: "香港中文大学", p: "医学 / 药剂" },
-      { u: "香港理工大学", p: "护理 / 物理治疗" },
-      { u: "香港浸会大学", p: "中医药" }
+      { u: "香港中文大学", p: "音乐（BA）" },
+      { u: "香港大学", p: "音乐（BA）" },
+      { u: "香港浸会大学", p: "音乐（BA）" },
+      { u: "香港演艺学院", p: "音乐（BMus）" },
+      { u: "香港教育大学", p: "创意艺术与文化（音乐）（BA）" }
     ],
-    stories: ["yuan", "zhong"],
-    tips: ["医学与药剂通常要求化学，部分要求生物；面试安排以院校为准。"]
+    stories: ["koo"],
+    tips: ["音乐课程通常要求乐器／声乐基础与面试或试音，DSE 音乐科不是唯一条件。"]
+  },
+  {
+    id: "design",
+    title: "视觉艺术、设计与建筑",
+    electives: ["视觉艺术", "设计与应用科技", "科技与生活", "中国文学", "英语文学"],
+    interests: ["视觉与设计", "科技与工程"],
+    abilities: ["创意设计", "语言表达"],
+    styles: ["创新型", "实践型"],
+    goals: ["国际视野"],
+    majors: ["视觉艺术（BA）", "设计学（BA）", "创意媒体（BA）", "建筑学（BSSc/BSc）"],
+    careers: ["设计师", "视觉艺术家", "建筑师", "创意总监"],
+    unis: [
+      { u: "香港浸会大学", p: "视觉艺术（BA）" },
+      { u: "香港理工大学", p: "设计（BA）" },
+      { u: "香港城市大学", p: "创意媒体（BA）" },
+      { u: "香港中文大学", p: "建筑学（BSSc）" }
+    ],
+    stories: ["yim"],
+    tips: ["设计／建筑通常需作品集；视觉艺术科是直接相关起点。"]
+  },
+  {
+    id: "language",
+    title: "语言、翻译与文学",
+    electives: ["中国文学", "英语文学", "中国历史", "历史", "地理", "伦理与宗教", "法语", "德语", "日语", "韩语", "西班牙语"],
+    interests: ["语言与文学", "自我与反思", "人际与领导"],
+    abilities: ["语言表达", "分析推理"],
+    styles: ["研究型"],
+    goals: ["国际视野", "稳定发展"],
+    majors: ["语言学（BA）", "翻译（BA）", "英语研究（BA）", "语文教育（BEd）"],
+    careers: ["翻译／传译", "编辑／作家", "语文教师", "文化机构"],
+    unis: [
+      { u: "香港大学", p: "语言学／翻译（BA）" },
+      { u: "香港中文大学", p: "翻译（BA）" },
+      { u: "香港城市大学", p: "语言学及翻译（BA）" },
+      { u: "香港教育大学", p: "语文研究（BA）" }
+    ],
+    stories: ["lin"],
+    tips: ["语言与翻译课程重视中英文写作与面试表现；第二语言是加分项。"]
+  },
+  {
+    id: "humanities",
+    title: "人文、法律与传播",
+    electives: ["历史", "中国历史", "地理", "中国文学", "英语文学", "伦理与宗教"],
+    interests: ["语言与文学", "自我与反思", "人际与领导"],
+    abilities: ["语言表达", "分析推理"],
+    styles: ["研究型"],
+    goals: ["国际视野", "稳定发展"],
+    majors: ["法律（LLB）", "新闻与传播（BA）", "历史／哲学（BA）", "文化研究（BA）"],
+    careers: ["律师", "记者／编辑", "文化研究", "公共事务"],
+    unis: [
+      { u: "香港大学", p: "法律（LLB）" },
+      { u: "香港中文大学", p: "法律（LLB）" },
+      { u: "香港城市大学", p: "法律（LLB）" },
+      { u: "香港浸会大学", p: "新闻与传播（BA）" },
+      { u: "岭南大学", p: "文化研究（BA）" }
+    ],
+    stories: ["rao"],
+    tips: ["法律与新闻重视英文写作与批判思考，面试可能涉及时事。"]
+  },
+  {
+    id: "social",
+    title: "社会科学、社会工作与公共服务",
+    electives: ["地理", "历史", "中国历史", "健康管理与社会关怀", "伦理与宗教", "旅游与款待"],
+    interests: ["人际与领导", "自我与反思", "自然与环境"],
+    abilities: ["语言表达", "分析推理"],
+    styles: ["实践型", "研究型"],
+    goals: ["稳定发展"],
+    majors: ["社会科学（BSocSc）", "社会工作（BSW）", "公共政策（BSocSc）", "心理学（BSocSc）"],
+    careers: ["社工", "政策分析员", "心理学家", "公共事务"],
+    unis: [
+      { u: "香港大学", p: "社会科学（BSocSc）" },
+      { u: "香港中文大学", p: "社会科学（BSocSc）" },
+      { u: "香港城市大学", p: "社会科学（BSocSc）" },
+      { u: "香港理工大学", p: "社会工作（BA）" }
+    ],
+    stories: ["rao"],
+    tips: ["社科重视英文与论述能力；社工课程或有面试与相关经历要求。"]
   },
   {
     id: "business",
     title: "商科、金融与管理",
     electives: ["经济", "企业、会计与财务概论", "数学延伸单元一 (M1)", "资讯及通讯科技"],
+    interests: ["逻辑与数据", "人际与领导"],
     abilities: ["分析推理", "语言表达"],
     styles: ["实践型", "研究型"],
     goals: ["稳定发展", "国际视野"],
-    majors: ["工商管理", "会计学", "金融学", "经济学"],
+    majors: ["工商管理（BBA）", "会计学（BBA）", "金融学（BBA）", "经济学（BEcon/BSSc）"],
     careers: ["会计师", "金融分析师", "管理顾问", "创业者"],
     unis: [
-      { u: "香港大学", p: "经济及金融 / 工商管理" },
-      { u: "香港中文大学", p: "工商管理 / 会计" },
-      { u: "香港科技大学", p: "商科 / 经济" },
-      { u: "香港城市大学", p: "商科 / 金融" }
+      { u: "香港大学", p: "工商管理（BBA）" },
+      { u: "香港中文大学", p: "工商管理（BBA）" },
+      { u: "香港科技大学", p: "商科（BBA）" },
+      { u: "香港城市大学", p: "商科（BBA）" }
     ],
     stories: ["li"],
     tips: ["商科普遍看重英文与数学；部分课程对 M1 有额外加分。"]
   },
   {
-    id: "humanities",
-    title: "人文、法律与社会科学",
-    electives: ["历史", "中国历史", "地理", "中国文学", "英语文学", "伦理与宗教", "法语", "德语", "日语", "韩语", "西班牙语"],
-    abilities: ["语言表达", "分析推理"],
-    styles: ["研究型"],
-    goals: ["国际视野", "稳定发展"],
-    majors: ["法律", "新闻与传播", "语言与教育", "社会科学"],
-    careers: ["律师", "记者 / 编辑", "教师", "公共事务主任"],
+    id: "tech",
+    title: "科技、工程与数据",
+    electives: ["物理", "化学", "资讯及通讯科技", "数学延伸单元一 (M1)", "数学延伸单元二 (M2)", "设计与应用科技"],
+    interests: ["逻辑与数据", "科技与工程"],
+    abilities: ["分析推理", "动手实验"],
+    styles: ["研究型", "实践型"],
+    goals: ["科技前沿"],
+    majors: ["计算机科学（BSc）", "数据科学（BSc）", "电子工程（BEng）", "金融科技（BSc）"],
+    careers: ["软件工程师", "数据科学家", "网络安全工程师", "产品经理"],
     unis: [
-      { u: "香港大学", p: "法律 / 文学" },
-      { u: "香港中文大学", p: "法律 / 社会科学" },
-      { u: "香港城市大学", p: "法律 / 媒体传播" },
-      { u: "香港教育大学", p: "教育 / 语言" }
+      { u: "香港科技大学", p: "计算机科学（BSc）" },
+      { u: "香港中文大学", p: "计算机科学（BSc）" },
+      { u: "香港大学", p: "工学（BEng）" },
+      { u: "香港理工大学", p: "计算机（BSc）" }
     ],
-    stories: ["rao", "lin"],
-    tips: ["法律与新闻重视英文写作与批判思考，面试可能涉及时事。"]
-  },
-  {
-    id: "design",
-    title: "创意、设计与建筑",
-    electives: ["视觉艺术", "音乐", "设计与应用科技", "科技与生活", "中国文学", "英语文学"],
-    abilities: ["创意设计", "语言表达"],
-    styles: ["创新型", "实践型"],
-    goals: ["国际视野"],
-    majors: ["设计学", "建筑学", "创意媒体", "音乐"],
-    careers: ["设计师", "建筑师", "创意总监", "音乐 / 艺术从业者"],
-    unis: [
-      { u: "香港理工大学", p: "设计 / 建筑" },
-      { u: "香港中文大学", p: "建筑" },
-      { u: "香港城市大学", p: "创意媒体" },
-      { u: "香港浸会大学", p: "视觉艺术 / 音乐" }
-    ],
-    stories: ["yim", "lin"],
-    tips: ["设计／建筑通常需作品集；部分课程要求数学或物理基础。"]
+    stories: ["tang", "ko"],
+    tips: ["工程与计算机课程普遍重视数学，部分要求 M1／M2 或物理。"]
   },
   {
     id: "science",
     title: "理学与科研",
     electives: ["物理", "化学", "生物", "数学延伸单元一 (M1)", "数学延伸单元二 (M2)"],
+    interests: ["逻辑与数据", "自然与环境", "科技与工程"],
     abilities: ["分析推理", "动手实验"],
     styles: ["研究型"],
     goals: ["科技前沿"],
-    majors: ["数学", "物理学", "化学", "生物科学"],
+    majors: ["数学（BSc）", "物理学（BSc）", "化学（BSc）", "生物科学（BSc）"],
     careers: ["科研人员", "数据分析师", "实验室主管", "大学教师"],
     unis: [
-      { u: "香港大学", p: "理学院" },
-      { u: "香港中文大学", p: "理学院" },
-      { u: "香港科技大学", p: "理学院" },
-      { u: "香港城市大学", p: "理学院" }
+      { u: "香港大学", p: "理学院（BSc）" },
+      { u: "香港中文大学", p: "理学院（BSc）" },
+      { u: "香港科技大学", p: "理学院（BSc）" },
+      { u: "香港城市大学", p: "理学院（BSc）" }
     ],
     stories: ["ko", "tang"],
     tips: ["理科课程重视数学与实验能力；M1／M2 对物理与数据方向有帮助。"]
   },
   {
-    id: "social",
-    title: "社会科学、教育与公共服务",
-    electives: ["地理", "历史", "中国历史", "健康管理与社会关怀", "伦理与宗教", "体育", "旅游与款待"],
-    abilities: ["语言表达", "分析推理"],
-    styles: ["实践型", "研究型"],
+    id: "health",
+    title: "生命科学与医疗健康",
+    electives: ["生物", "化学", "健康管理与社会关怀", "体育"],
+    interests: ["自然与环境", "运动与身体"],
+    abilities: ["动手实验", "分析推理"],
+    styles: ["研究型", "实践型"],
     goals: ["稳定发展"],
-    majors: ["社会科学", "社会工作", "公共政策", "体育科学"],
-    careers: ["社工", "政策分析员", "教师", "体育教练"],
+    majors: ["医学（MBBS/MBChB）", "药剂学（BPharm）", "护理学（BSc）", "物理治疗（BSc）", "生物医学（BSc）"],
+    careers: ["医生", "护士", "药剂师", "物理治疗师", "科研人员"],
     unis: [
-      { u: "香港中文大学", p: "社会科学" },
-      { u: "香港大学", p: "社会科学" },
-      { u: "香港城市大学", p: "社会科学" },
-      { u: "香港教育大学", p: "教育" }
+      { u: "香港大学", p: "医学（MBBS）" },
+      { u: "香港中文大学", p: "医学（MBChB）" },
+      { u: "香港理工大学", p: "护理（BSc）" },
+      { u: "香港浸会大学", p: "中医药（学士）" },
+      { u: "香港大学", p: "药剂学（BPharm）" }
     ],
-    stories: ["rao"],
-    tips: ["社科重视英文与论述能力；社工课程或有面试与相关经历要求。"]
+    stories: ["yuan", "zhong"],
+    tips: ["医学与药剂通常要求化学，部分要求生物；面试安排以院校为准。"]
   }
 ];
+
 
 const GENERIC_PATHWAY = {
   id: "general",
   title: "多元跨学科方向",
-  electives: [], abilities: [], styles: [], goals: [],
+  electives: [], interests: [], abilities: [], styles: [], goals: [],
   majors: ["跨学科研究", "社会科学", "工商管理"],
   careers: ["项目策划", "社区工作者", "管理培训生"],
   unis: [
@@ -1122,6 +1258,8 @@ const EXPERTS = {
   rao:  { name: "饶宗颐", role: "国学大师", detail: "研究历史、文学、考古与艺术，曾任教于香港大学及香港中文大学。" },
   yim:  { name: "严迅奇", role: "香港建筑师", detail: "香港大学建筑系毕业；作品包括添马政府总部及立法会综合大楼、香港故宫文化博物馆。" },
   lin:  { name: "林夕", role: "填词人", detail: "香港大学文学院中文系毕业（主修翻译），填词作品逾 4,000 首。" },
+  lee:  { name: "李丽珊", role: "香港首位奥运金牌得主｜滑浪风帆", detail: "1996 年亚特兰大奥运会滑浪风帆金牌，为香港赢得首面奥运金牌；退役后参与体育推广与青少年培训。" },
+  koo:  { name: "顾嘉煇", role: "作曲家｜香港乐坛教父", detail: "创作大量粤语流行曲与电视剧主题曲，推动香港流行音乐发展。" },
   zhong:{ name: "钟南山", role: "呼吸病学专家｜中国工程院院士", detail: "1936 年生于南京，成长于广州；长期在广州医科大学附属第一医院工作。" }
 };
 
@@ -1135,8 +1273,11 @@ const REGION_TIPS = {
 
 function scorePathway(pathway, s) {
   const electives = s.electives.filter(function (v) { return v && v !== "无"; });
+  const interests = s.interests || [];
+  const pathwayInterests = pathway.interests || [];
   let score = 0;
-  score += electives.filter(function (v) { return pathway.electives.indexOf(v) !== -1; }).length * 3;
+  score += electives.filter(function (v) { return pathway.electives.indexOf(v) !== -1; }).length * 4;
+  score += interests.filter(function (v) { return pathwayInterests.indexOf(v) !== -1; }).length * 3;
   score += s.abilities.filter(function (v) { return pathway.abilities.indexOf(v) !== -1; }).length * 2;
   if (pathway.styles.indexOf(s.style) !== -1) score += 2;
   if (pathway.goals.indexOf(s.goal) !== -1) score += 2;
@@ -1145,12 +1286,14 @@ function scorePathway(pathway, s) {
 
 function pickPathways(s) {
   const electives = s.electives.filter(function (v) { return v && v !== "无"; });
+  const interests = s.interests || [];
   if (!electives.length) return [GENERIC_PATHWAY];
 
   const ranked = PATHWAYS.map(function (p, i) {
     const hits = electives.filter(function (v) { return p.electives.indexOf(v) !== -1; }).length;
-    return { p: p, score: scorePathway(p, s), hits: hits, i: i };
-  }).filter(function (x) { return x.hits > 0; })
+    const interestHits = interests.filter(function (v) { return p.interests.indexOf(v) !== -1; }).length;
+    return { p: p, score: scorePathway(p, s), hits: hits, interestHits: interestHits, i: i };
+  }).filter(function (x) { return x.hits > 0 || x.interestHits > 0; })
     .sort(function (a, b) { return b.score - a.score || a.i - b.i; })
     .slice(0, 2)
     .map(function (x) { return x.p; });
@@ -1197,14 +1340,14 @@ function bestFive(g) {
   "use strict";
 
   const STORAGE_KEY = "dse-navigator-v1";
-  const STEP_TITLES = ["选择 DSE 科目", "能力倾向", "学习偏好", "确认并生成"];
+  const STEP_TITLES = ["选择 DSE 科目", "兴趣领域", "能力倾向", "学习偏好", "确认并生成"];
   let state = freshState();
   let restored = false;
 
   function $(id) { return document.getElementById(id); }
 
   function freshState() {
-    return { step: 1, electives: ["", "", ""], abilities: [], style: "研究型", goal: "稳定发展", region: "不限" };
+    return { step: 1, electives: ["", "", ""], interests: [], abilities: [], style: "研究型", goal: "稳定发展", region: "不限" };
   }
 
   function loadState() {
@@ -1215,6 +1358,7 @@ function bestFive(g) {
       if (!parsed || typeof parsed !== "object") return null;
       return {
         electives: Array.isArray(parsed.electives) ? parsed.electives.slice(0, 3) : ["", "", ""],
+        interests: Array.isArray(parsed.interests) ? parsed.interests : [],
         abilities: Array.isArray(parsed.abilities) ? parsed.abilities : [],
         style: typeof parsed.style === "string" ? parsed.style : "研究型",
         goal: typeof parsed.goal === "string" ? parsed.goal : "稳定发展",
@@ -1255,10 +1399,12 @@ function bestFive(g) {
       sel.value = state.electives[i] || "";
     });
 
-    document.querySelectorAll("#abilities .option").forEach(function (btn) {
-      const on = state.abilities.indexOf(btn.dataset.value) !== -1;
-      btn.classList.toggle("selected", on);
-      btn.setAttribute("aria-pressed", String(on));
+    ["interests", "abilities"].forEach(function (key) {
+      document.querySelectorAll("#" + key + " .option").forEach(function (btn) {
+        const on = state[key].indexOf(btn.dataset.value) !== -1;
+        btn.classList.toggle("selected", on);
+        btn.setAttribute("aria-pressed", String(on));
+      });
     });
 
     $("style").value = state.style;
@@ -1269,6 +1415,7 @@ function bestFive(g) {
   function updateReview() {
     const chosen = state.electives.filter(function (v) { return v && v !== "无"; });
     $("reviewSubjects").textContent = chosen.length ? chosen.join("、") : "未选择";
+    $("reviewInterests").textContent = state.interests.length ? state.interests.join("、") : "未选择";
     $("reviewAbilities").textContent = state.abilities.length ? state.abilities.join("、") : "未选择";
     $("reviewStyle").textContent = state.style;
     $("reviewGoal").textContent = state.goal;
@@ -1289,13 +1436,14 @@ function bestFive(g) {
       step.setAttribute("aria-hidden", String(!active));
     });
 
-    const percent = (state.step / 4) * 100;
+    const totalSteps = STEP_TITLES.length;
+    const percent = (state.step / totalSteps) * 100;
     $("progress").style.width = percent + "%";
     $("progress").parentElement.setAttribute("aria-valuenow", String(state.step));
     $("stepLabel").textContent = "第 " + state.step + " 步：" + STEP_TITLES[state.step - 1];
-    $("liveStatus").textContent = "第 " + state.step + " 步，共 4 步：" + STEP_TITLES[state.step - 1];
+    $("liveStatus").textContent = "第 " + state.step + " 步，共 " + totalSteps + " 步：" + STEP_TITLES[state.step - 1];
     $("prevBtn").disabled = state.step === 1;
-    $("nextBtn").textContent = state.step === 4 ? "生成探索结果" : "下一步";
+    $("nextBtn").textContent = state.step === totalSteps ? "生成探索结果" : "下一步";
     $("result").classList.remove("active");
     setError("");
   }
@@ -1330,11 +1478,12 @@ function bestFive(g) {
     const top = picked[0];
     const second = picked[1] || null;
     const abilitiesText = state.abilities.length ? state.abilities.join("、") : "多元";
+    const interestsText = state.interests.length ? state.interests.join("、") : "多元领域";
 
     $("resultTitle").textContent = second ? top.title + " × " + second.title : top.title;
     $("resultSummary").textContent = second
-      ? "你的选修组合同时指向这两个方向。建议先按「" + top.title + "」准备核心申请材料，再以「" + second.title + "」拓展跨学科选择。你偏好的" + abilitiesText + "能力与「" + state.style + "」学习方式，可作为选课与面试叙事的线索。"
-      : "你的选修组合与「" + top.title + "」最匹配。你偏好的" + abilitiesText + "能力与「" + state.style + "」学习方式，适合沿这个方向深入；但仍要逐校核对选修科与数学延伸要求。";
+      ? "你的选修组合与兴趣（" + interestsText + "）同时指向这两个方向。建议先按「" + top.title + "」准备核心申请材料，再以「" + second.title + "」拓展跨学科选择。你偏好的" + abilitiesText + "能力与「" + state.style + "」学习方式，可作为选课与面试叙事的线索。"
+      : "你的选修组合与兴趣（" + interestsText + "）与「" + top.title + "」最匹配。你偏好的" + abilitiesText + "能力与「" + state.style + "」学习方式，适合沿这个方向深入；但仍要逐校核对选修科与数学延伸要求。";
 
     const tags = $("resultTags");
     tags.innerHTML = "";
@@ -1342,6 +1491,12 @@ function bestFive(g) {
       const span = document.createElement("span");
       span.className = "tag-chip";
       span.textContent = p.title;
+      tags.appendChild(span);
+    });
+    state.interests.forEach(function (text) {
+      const span = document.createElement("span");
+      span.className = "tag-chip";
+      span.textContent = text;
       tags.appendChild(span);
     });
     [state.style, state.goal, state.region].forEach(function (text) {
@@ -1425,11 +1580,12 @@ function bestFive(g) {
   const stored = loadState();
   if (stored) {
     state.electives = stored.electives;
+    state.interests = stored.interests;
     state.abilities = stored.abilities;
     state.style = stored.style;
     state.goal = stored.goal;
     state.region = stored.region;
-    restored = Boolean(stored.electives.some(Boolean) || stored.abilities.length);
+    restored = Boolean(stored.electives.some(Boolean) || stored.interests.length || stored.abilities.length);
   }
 
   syncControls();
@@ -1447,21 +1603,26 @@ function bestFive(g) {
     });
   });
 
-  document.querySelectorAll("#abilities .option").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      const value = btn.dataset.value;
-      const index = state.abilities.indexOf(value);
-      if (index === -1) state.abilities.push(value);
-      else state.abilities.splice(index, 1);
+  function bindMultiSelect(containerId, key) {
+    document.querySelectorAll("#" + containerId + " .option").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        const value = btn.dataset.value;
+        const index = state[key].indexOf(value);
+        if (index === -1) state[key].push(value);
+        else state[key].splice(index, 1);
 
-      const on = state.abilities.indexOf(value) !== -1;
-      btn.classList.toggle("selected", on);
-      btn.setAttribute("aria-pressed", String(on));
-      saveState();
-      updateReview();
-      setError("");
+        const on = state[key].indexOf(value) !== -1;
+        btn.classList.toggle("selected", on);
+        btn.setAttribute("aria-pressed", String(on));
+        saveState();
+        updateReview();
+        setError("");
+      });
     });
-  });
+  }
+
+  bindMultiSelect("interests", "interests");
+  bindMultiSelect("abilities", "abilities");
 
   ["style", "goal", "region"].forEach(function (id) {
     $(id).addEventListener("change", function (event) {
@@ -1483,12 +1644,16 @@ function bestFive(g) {
       const message = validateStep1();
       if (message) { setError(message); return; }
     }
-    if (state.step === 2 && state.abilities.length === 0) {
+    if (state.step === 2 && state.interests.length === 0) {
+      setError("请至少选择一个兴趣领域。");
+      return;
+    }
+    if (state.step === 3 && state.abilities.length === 0) {
       setError("请至少选择一项能力。");
       return;
     }
     setError("");
-    if (state.step < 4) {
+    if (state.step < 5) {
       state.step += 1;
       updateStep();
     } else {
